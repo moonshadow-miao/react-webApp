@@ -30,9 +30,9 @@ module.exports = {
   // See the discussion in https://github.com/facebookincubator/create-react-app/issues/343.
   devtool: 'cheap-module-source-map',
   // These are the "entry points" to our application.
-  // This means they will be the "root" imports that are included in JS bundle.
-  // The first two entry points enable "hot" CSS and auto-refreshes for JS.
-  entry: [
+  // This means they will be the "root" imports that are included in JS bundle.这意味着它们将是包含在js包中的“root”导入
+  // The first two entry points enable "hot" CSS and auto-refreshes for JS. 前两个入口点启用了“hot”CSS和js的自动刷新功能。
+  entry: [     // 相当于 main : {entry:[ '.xxx/node_modules/polyfills', '.xxx/node_modules/react-dev-utils/webpackHotDevClient','.xxx/src/index.js']} index.js的编译依赖于前面两个插件,最终的入口就一个,index.js
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Include an alternative client for WebpackDevServer. A client's job is to
@@ -68,7 +68,7 @@ module.exports = {
       path.resolve(info.absoluteResourcePath).replace(/\\/g, '/'),
   },
   resolve: {
-    // This allows you to set a fallback for where Webpack should look for modules.
+    // This allows you to set a fallback for where Webpack should look for modules.  // 这允许你设置一个后备，Webpack应该寻找模块。
     // We placed these paths second because we want `node_modules` to "win"
     // if there are any conflicts. This matches Node resolution mechanism.
     // https://github.com/facebookincubator/create-react-app/issues/253
@@ -253,7 +253,7 @@ module.exports = {
     tls: 'empty',
     child_process: 'empty',
   },
-  // Turn off performance hints during development because we don't do any
+  // Turn off performance hints during development because we don't do any  // 在开发过程中关闭性能提示,开发环境不用, 这些警告变得累赘
   // splitting or minification in interest of speed. These warnings become
   // cumbersome.
   performance: {
