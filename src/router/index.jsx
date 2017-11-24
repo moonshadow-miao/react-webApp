@@ -1,5 +1,13 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom'
+import {BrowserRouter, Route ,Redirect } from 'react-router-dom'
+import Bundle from './bundle'
+import indexContainer from 'bundle-loader?lazy../views/index'
+
+const Index = () => (
+  <Bundle load={indexContainer}>
+    {Index => <Index/>}
+  </Bundle>
+)
 
 const options = {
   basename:'/', // 为所有位置添加一个基准URL
@@ -12,8 +20,13 @@ class RouterIndex extends Component {
   render() {
     return (
       <BrowserRouter basename = {options.basename} >
-        <Route></Route>
+        <div>
+          <Redirect to="/index"></Redirect>
+          <Route path="/index" component={Index}></Route>
+          {/*<Route path="/login" component={Login}></Route>*/}
+        </div>
       </BrowserRouter>
+
     )
   }
 }

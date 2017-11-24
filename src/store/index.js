@@ -1,24 +1,14 @@
-import React from 'react'
-import { render } from 'react-dom'
 import { combineReducers } from 'redux'
 import { createStore, applyMiddleware } from 'redux'
+import common from './common/index'
 
-const initialState = {};
+const rootState = {};
+const reducer = combineReducers({
+  common
+});
 
-const USER_INFO = ''
-
-const rootReducer = function (state = initialState, action) {
-  switch (action.type) {
-    case USER_INFO:
-      return action.data
-    default:
-      return state
-  }
-};
-
-
-
-const store = createStore(rootReducer, initialState,
+let createStoreWithMiddleware = applyMiddleware()(createStore)
+const store = createStoreWithMiddleware(reducer, rootState,
   // 触发 redux-devtools
   window.devToolsExtension ? window.devToolsExtension() : undefined
 );
