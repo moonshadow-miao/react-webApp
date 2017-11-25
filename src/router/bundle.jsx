@@ -1,9 +1,11 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 export default class Bundle extends Component {
-  constructor(props) {
-    super(props)
+  state = {
+    // short for "module" but that's a keyword in js, so "mod"
+    mod: null
   }
+
   componentWillMount() {
     this.load(this.props)
   }
@@ -14,9 +16,10 @@ export default class Bundle extends Component {
   }
   load = (props) => {
     this.setState({
-      mod:null
+      mod:''
     })
     props.load((mod) => {
+      console.log(55,mod)
       this.setState({
         // handle both es imports and cjs
         mod: mod.default ? mod.default : mod
