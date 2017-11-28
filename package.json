@@ -42,12 +42,16 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "less": "^2.7.3",
+    "less-loader": "^4.0.5",
+    "node-sass": "^4.7.2",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
     "promise": "8.0.1",
     "raf": "3.4.0",
     "redux-devtools": "^3.4.1",
+    "sass-loader": "^6.0.6",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -94,6 +98,9 @@
     "presets": [
       "react-app"
     ]
+  },
+  "theme": {
+    "primary-color": "#ee3943"
   },
   "eslintConfig": {
     "extends": "react-app"

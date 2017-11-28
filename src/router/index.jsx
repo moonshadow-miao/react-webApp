@@ -16,10 +16,11 @@ class RouterIndex extends Component {
   render() {
     return (
       <BrowserRouter basename={options.basename}>
-        <Redirect to="/index">
+        <div>
+          <Redirect to="/index"></Redirect>
           <Route path="/index" component={Index}></Route>
           <Route path="/login" component={Login}></Route>
-        </Redirect>
+        </div>
       </BrowserRouter>
 
     )
