@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import './assets/js/fastclick'
+import './assets/js/rem'
 import 'antd-mobile/dist/antd-mobile.less'
+
 
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {

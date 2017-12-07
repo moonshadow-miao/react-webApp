@@ -53,10 +53,6 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
   },
-  "theme": {
-    "brand-primary": "red",
-    "color-text-base":  "#333"
-  },
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
