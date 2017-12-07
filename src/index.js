@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import './assets/js/fastclick'
 import './assets/js/rem'
 import 'antd-mobile/dist/antd-mobile.less'
+import './assets/css/commom.less'
 
 
 if ('addEventListener' in document) {

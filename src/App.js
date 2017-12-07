@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-import { Button } from 'antd-mobile';
+import { Provider } from 'react-redux'
+import router from './routers/index'
+const {store ,Router} = router
+
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Button type="primary">primary</Button>
-      </div>
+      <Provider store={store}>
+        <Router></Router>
+      </Provider>
     );
   }
 }
-
 export default App;
