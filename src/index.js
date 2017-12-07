@@ -7,7 +7,6 @@ import './assets/js/rem'
 import 'antd-mobile/dist/antd-mobile.less'
 import './assets/css/commom.less'
 
-
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     window.FastClick.attach(document.body);
