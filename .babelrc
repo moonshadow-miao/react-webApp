@@ -1,0 +1,14 @@
+{
+  "presets": [
+    "react"
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd-mobile",
+        "style": "less"
+      }
+    ]
+  ]
+}

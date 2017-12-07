@@ -11,6 +11,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
+const theme = require('./../package').theme;
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -223,7 +224,12 @@ module.exports = {
           // },
           {
             test: /\.less$/,
-            loader: 'style-loader!css-loader!less-loader'
+            use: [
+              'style-loader',
+              'css-loader',
+              {loader: 'less-loader', options: {modifyVars: theme}},
+            ],
+            include: /node_modules/,
           },
           {
             // Exclude `js` files to keep "css" loader working as it injects
