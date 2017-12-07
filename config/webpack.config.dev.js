@@ -85,7 +85,7 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx','less'],
     alias: {
       
       // Support React Native Web
@@ -199,6 +199,32 @@ module.exports = {
           // In production, they would get copied to the `build` folder.
           // This loader doesn't use a "test" so it will catch all modules
           // that fall through the other loaders.
+
+          // sass
+          // {
+          //   test: /\.sass/,
+          //   // loader: 'style-loader!css-loader!sass-loader!postcss-loader'
+          //   use: [
+          //     { loader: 'style-loader'},
+          //     { loader: 'css-loader'},
+          //     {
+          //       loader: 'postcss-loader',
+          //       options: {
+          //         plugins: () => [autoprefixer(
+          //           { browsers: ['iOS >= 7', 'Android >= 4.1',
+          //               'last 10 Chrome versions', 'last 10 Firefox versions',
+          //               'Safari >= 6', 'ie > 8']
+          //           }
+          //         )],
+          //       },
+          //     },
+          //     'sass-loader'
+          //   ]
+          // },
+          {
+            test: /\.less$/,
+            loader: 'style-loader!css-loader!less-loader'
+          },
           {
             // Exclude `js` files to keep "css" loader working as it injects
             // it's runtime that would otherwise processed through "file" loader.
@@ -226,6 +252,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
+
     }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),
