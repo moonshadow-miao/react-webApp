@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {createStore, combineReducers, applyMiddleware} from 'redux'
+import {createStore, combineReducers, applyMiddleware,compose} from 'redux'
 import createHistory from 'history/createBrowserHistory'
 import {Route} from 'react-router'
 import {ConnectedRouter, routerReducer, routerMiddleware, push} from 'react-router-redux'
@@ -22,7 +22,7 @@ const store = createStore(
     // ...reducers,
     router: routerReducer
   }),
-  applyMiddleware(middleware)
+  compose(applyMiddleware(middleware),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) // ;添加对浏览器调试工具(redux-devtools)的支持
 )
 
 class Router extends Component {

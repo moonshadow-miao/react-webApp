@@ -54,8 +54,10 @@ module.exports = {
       // initialization, it doesn't blow up the WebpackDevServer client, and
       // changing JS code would still trigger a refresh.
     ],
-    vendor: ['react', 'react-dom']
+    // vendor_core: ['react', 'react-dom','react-redux','react-router','react-router-redux','redux'],
+    // vendor_utils:['lodash','promise','whatwg-fetch','object-assign'],
   },
+
   output: {
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: true,
@@ -101,7 +103,16 @@ module.exports = {
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
       new webpack.optimize.CommonsChunkPlugin({
-        names: ['vendor', 'manifest'],
+        name: 'vendors',
+        minChunks: function (module, count) {
+          return (
+            module.resource &&
+            /\.js$/.test(module.resource) &&
+            module.resource.indexOf(
+              path.join(__dirname, '../node_modules')
+            ) === 0
+          )
+        }
       }),
     ],
   },
@@ -127,7 +138,7 @@ module.exports = {
             loader: require.resolve('eslint-loader'),
           },
         ],
-        include: paths.appSrc,
+        include: paths.appSrc
       },
       {
         test: /(containers|components)\/([^/]+)\/?([^/]*)\.js?$/,
@@ -234,7 +245,7 @@ module.exports = {
               'css-loader',
               {loader: 'less-loader', options: {modifyVars: theme}},
             ],
-            include: /node_modules/,
+            include: [/node_modules/,/assets/],
           },
           {
             // Exclude `js` files to keep "css" loader working as it injects

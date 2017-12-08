@@ -12,6 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const paths = require('./paths');
 const getClientEnvironment = require('./env');
+var theme = require('../theme')
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -143,6 +144,11 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /(containers|components)\/([^/]+)\/?([^/]*)\.js?$/,
+            include: path.resolve(__dirname, 'src/routers/'),
+            loaders: ['bundle-loader?lazy', 'babel-loader']
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
@@ -216,6 +222,15 @@ module.exports = {
           // When you `import` an asset, you get its filename.
           // This loader doesn't use a "test" so it will catch all modules
           // that fall through the other loaders.
+          {
+            test: /\.less$/,
+            use: [
+              'style-loader',
+              'css-loader',
+              {loader: 'less-loader', options: {modifyVars: theme, name: 'static/css/[name].[hash:8].css',}},
+            ],
+            include: [/node_modules/,/assets/],
+          },
           {
             loader: require.resolve('file-loader'),
             // Exclude `js` files to keep "css" loader working as it injects
