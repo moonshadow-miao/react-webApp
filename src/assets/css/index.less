@@ -1,0 +1,91 @@
+.index{
+  background-color: #f0f0f0;
+}
+// banner部分
+.banner {
+  width: 100%;
+  height: 5.15rem;
+  position: relative;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+  .city_select{
+    position: absolute;
+    top: .35rem;
+    padding-left: .2rem;
+    .cities{
+      color: #fff;
+      margin-left: -.22rem;
+      text-align: center;
+      line-height: .66rem;
+      width: 1rem;
+      background-color: rgba(0,0,0,0.5);
+    }
+    span{
+      position: relative;
+      padding-right: 0.4rem;
+      color: #fff;
+      &::before{
+        content: '';
+        position: absolute;
+        border: .12rem solid transparent;
+        border-top: .16rem solid #fff;
+        right:0;
+        top: .08rem;
+      }
+    }
+  }
+  .search{
+    background-color: #fff;
+    margin: 0 9%;
+    border-radius: 2px;
+    width: 82%;
+    position: absolute;
+    top: 3.6rem;
+    height: .82rem;
+    line-height: .82rem;
+    text-align: center;
+    span{
+      vertical-align: super;
+      color: grey;
+    }
+  }
+  .login{
+    display: inline-block;
+    padding: .3rem;
+    position: absolute;
+    top: .1rem;
+    right: 0;
+    img{
+      width: .33rem;
+      height: .4rem;
+    }
+  }
+}
+
+// 分类导航和广告部分
+.nav{
+  background-color: #fff;
+  width: 100%;
+  height: 1.88rem;
+  padding: .4rem 0 .3rem;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: .2rem;
+  li{
+    flex: 1;
+    height: 100%;
+    text-align: center;
+      img{
+        height: 100%;
+      }
+  }
+}
+.poster{
+  padding: .2rem .3rem;
+  background-color: #fff;
+  img{
+    width: 100%;
+  }
+}

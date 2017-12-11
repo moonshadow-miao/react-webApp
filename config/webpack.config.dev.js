@@ -143,6 +143,7 @@ module.exports = {
       {
         test: /(containers|components)\/([^/]+)\/?([^/]*)\.js?$/,
         include: path.resolve(__dirname, 'src/routers/'),
+        exclude: /node_modules/,
         loaders: ['bundle-loader?lazy', 'babel-loader']
       },
       {
@@ -216,28 +217,6 @@ module.exports = {
           // In production, they would get copied to the `build` folder.
           // This loader doesn't use a "test" so it will catch all modules
           // that fall through the other loaders.
-
-          // sass
-          // {
-          //   test: /\.sass/,
-          //   // loader: 'style-loader!css-loader!sass-loader!postcss-loader'
-          //   use: [
-          //     { loader: 'style-loader'},
-          //     { loader: 'css-loader'},
-          //     {
-          //       loader: 'postcss-loader',
-          //       options: {
-          //         plugins: () => [autoprefixer(
-          //           { browsers: ['iOS >= 7', 'Android >= 4.1',
-          //               'last 10 Chrome versions', 'last 10 Firefox versions',
-          //               'Safari >= 6', 'ie > 8']
-          //           }
-          //         )],
-          //       },
-          //     },
-          //     'sass-loader'
-          //   ]
-          // },
           {
             test: /\.less$/,
             use: [
