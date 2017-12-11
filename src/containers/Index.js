@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button,Icon} from 'antd-mobile';
+import {Icon} from 'antd-mobile';
 import '../assets/css/index.less'
 import _map from 'lodash/map'
 import asyncComponent from "../utils/Bundlle";

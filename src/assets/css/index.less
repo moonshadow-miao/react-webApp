@@ -1,5 +1,6 @@
 .index{
   background-color: #f0f0f0;
+  overflow-x: hidden;
 }
 // banner部分
 .banner {
@@ -99,6 +100,50 @@
     height: 1.18rem;
     line-height: 1.18rem;
     padding: 0 .3rem;
+    h3{
+      font-size: .34rem;
+      font-weight: 700;
+      color: #3a3b3c;
+    }
+    .am-icon-lg {
+      width: 0.36rem;
+      height: 0.45rem;
+    }
+    span{
+      vertical-align: super;
+    }
+  }
+  .rooms{
+    width: 100%;
+    overflow-x: scroll;
+    &::-webkit-scrollbar {display:none}
+  }
+  .room_list{
+    width: 375%;
+    .room{
+      width: 4rem;
+      white-space: nowrap;
+      display: inline-block;
+      margin:0 .3rem;
+      img{
+        width: 100%;
+        height: 3rem;
+      }
+      .room_name{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-top: .4rem;
+        font-size: .34rem;
+        font-weight: 700;
+        color: #5a5c5d;
+      }
+      .price{
+        font-size: .32rem;
+        padding-top: .3rem;
+        color: #e8323f;
+      }
+    }
   }
 }
 
