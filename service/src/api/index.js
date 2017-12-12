@@ -1,14 +1,12 @@
 import KoaRouter from 'koa-router';
+import upload from './router/upload'
+import login from './router/user'
 
-const api = KoaRouter({ prefix: '/api'});
+const router = KoaRouter({ prefix: '/api'});
 
-api.get('/',
-  async (ctx, next) => {
-    ctx.response.type = 'json';
-    ctx.status = 200;
-    ctx.body = { data: 'Hello World' };
-  });
+router.use('/upload', upload.routes())
+.use('/login',login.routes())
 
-export default api
+export default router
 
 

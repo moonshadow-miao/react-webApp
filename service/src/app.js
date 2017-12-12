@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import api from './api';
+import router from './api';
 import bodyParser from 'koa-bodyparser';
 import cors from 'kcors';
 const path = require('path');
@@ -55,6 +55,6 @@ app.use(async (ctx, next) => {
 
 app.use(cors(corsOptions))
 .use(json())
-.use(api.routes())
-.use(api.allowedMethods());
+.use(router.routes())
+.use(router.allowedMethods());
 export default app;

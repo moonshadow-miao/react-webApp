@@ -23,3 +23,5 @@ router.post('/upload', upload.single('file'), async (ctx, next) => {
     filename: ctx.req.file.filename//返回文件名
   }
 });
+
+export default router
