@@ -4,6 +4,7 @@ import bodyParser from 'koa-bodyparser';
 import cors from 'kcors';
 const path = require('path');
 const serve = require('koa-static');
+let json = require('koa-json');
 
 const app = new Koa();
 
@@ -33,15 +34,27 @@ const resource = serve(path.join(__dirname,'../static'));
 app.use(resource);
 
 // 设置跨域请求设置
-var corsOptions = {
+const corsOptions = {
   origin: 'http://locahost:3000',
   optionsSuccessStatus: 204, // some legacy browsers (IE11, various SmartTVs) choke on 204
   credentials:true,
   maxAge:43200
-}
+};
+
+// 请求体解析配置
+const parseOption = {
+  onerror: function (err, ctx) {
+    ctx.throw('参数解析错误', 422);
+  }
+};
+
+app.use(async (ctx, next) => {
+  if (ctx.path.indexOf('/upload') !== -1) ctx.disableBodyParser = true;
+  await next();
+}).use(bodyParser(parseOption));
 
 app.use(cors(corsOptions))
-.use(bodyParser())
+.use(json())
 .use(api.routes())
-
+.use(api.allowedMethods());
 export default app;

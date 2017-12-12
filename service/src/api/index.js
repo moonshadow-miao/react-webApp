@@ -1,6 +1,6 @@
 import KoaRouter from 'koa-router';
 
-const api = KoaRouter();
+const api = KoaRouter({ prefix: '/api'});
 
 api.get('/',
   async (ctx, next) => {

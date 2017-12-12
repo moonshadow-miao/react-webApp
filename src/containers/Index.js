@@ -21,8 +21,17 @@ class Index extends Component {
     super(props);
     this.state = {
       city:'上海',
-      cityControl: "cities hide"
+      cityControl: "cities hide",
+      banner:'',
+      poster:''
     };
+  }
+
+  componentWillMount(){
+    this.setState({
+      banner:'http://localhost:3030/image/main.png',
+      poster:'http://localhost:3030/image/post.gif'
+    })
   }
 
   showCities = (event)=>{
@@ -51,7 +60,7 @@ class Index extends Component {
       <div onClick={this.hideCities} className='index'>
         {/*banner部分*/}
         <div className="banner">
-          <img src={require('../assets/image/main.png')} alt="暂无图片"/>
+          <img src={this.state.banner} alt="暂无图片"/>
           <div className="city_select">
             <span onClick={this.showCities}>{this.state.city}</span>
             <div className={this.state.cityControl} >
@@ -87,7 +96,7 @@ class Index extends Component {
           </li>
         </ul>
         <div className="poster">
-          <img src={require('../assets/image/post.gif')} alt=""/>
+          <img src = {this.state.poster} alt=""/>
         </div>
 
         {/*租户列表部分*/}
