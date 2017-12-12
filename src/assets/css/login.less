@@ -1,0 +1,90 @@
+@keyframes move_wave {
+  0% {transform: translateX(0) translateZ(0) scaleY(1);}
+  50% {transform: translateX(-25%) translateZ(0) scaleY(0.5);}
+  100% {transform: translateX(-50%) translateZ(0) scaleY(1);}
+}
+
+.login{
+  .top{
+    text-align: center;
+    width: 100%;
+    height: 4rem;
+    background-image: linear-gradient(90deg,#ff8084 20%,#ff9696 80%);
+    .back{
+      background-image: linear-gradient(90deg,#ff8084 20%,#ff9696 80%);
+      height: .9rem;
+      img{
+        width: .95rem;
+        height: .95rem;
+        padding: .3rem;
+      }
+    }
+    .logo{
+      width: 100%;
+      position: relative;
+      padding-top: .15rem;
+      height: 3.2rem;
+      overflow: hidden;
+      img{
+        width: 3.4rem;
+        height: 1.32rem;
+      }
+      .wave{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        div{
+          width: 200%;
+          height: 100%;
+          transform-origin: center bottom;
+          background-repeat: repeat-x;
+          background-position: 0 bottom;
+          background-size: 50% 40px;
+        }
+        &:nth-of-type(1){
+          z-index: 3;
+          opacity: .5;
+          div{
+            background-image: url(//localhost:3030/image/wave-top.png);
+            animation: move_wave 3s;
+            animation-delay: 3s;
+          }
+        }
+        &:nth-of-type(2){
+          z-index: 2;
+          opacity: .75;
+          div{
+            background-image: url(//localhost:3030/image/wave-mid.png);
+            animation: move_wave 10s linear infinite;
+          }
+        }
+        &:nth-of-type(3){
+          z-index: 1;
+          div{
+            background-image: url(//localhost:3030/image/wave-bot.png);
+            animation: move_wave 17s linear infinite;
+            animation-delay: 12s;
+          }
+        }
+      }
+    }
+  }
+  .tab{
+    width: 60%;
+    padding: .2rem 0;
+    margin: 0 auto;
+    .tab_sub{
+      display: inline-block;
+      padding: 12px 0;
+      width: 36%;
+      margin: 0 7%;
+      text-align: center;
+      font-size: .3rem;
+      &.active{
+        color: #ef4c55;
+        border-bottom: .04rem solid #ef4c55;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Link } from 'react-router-dom'
 import {Icon} from 'antd-mobile';
 import '../assets/css/index.less'
 import _map from 'lodash/map'
@@ -71,9 +72,11 @@ class Index extends Component {
               }
             </div>
           </div>
-          <div className="login">
-            <img src={require('../assets/image/my.png')} alt=""/>
-          </div>
+          <Link to='/login'>
+            <div className="login">
+              <img src={require('../assets/image/my.png')} alt=""/>
+            </div>
+          </Link>
           <div className="search">
             <Icon type='search' size='lg'/>
             <span> 输入区域，小区搜索房源</span>
