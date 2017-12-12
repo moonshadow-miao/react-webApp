@@ -9,4 +9,7 @@ if (env === 'development') {
 }
 
 const app = require(src).default;
-app.listen(port);
+
+app.listen(port,()=>{
+  console.log('listen on 3030');
+});
