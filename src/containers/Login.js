@@ -4,6 +4,8 @@ import {Modal} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import asyncComponent from "../utils/Bundlle";
 const Agreement = asyncComponent(() => import("../components/login/Agreement"));
+
+const HeaderNav = window.common.HeaderNav;
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -40,7 +42,6 @@ class Login extends Component {
   }
 
   render() {
-    let HeaderNav = window.common.HeaderNav;
     return (
       <div className='login'>
         <div className="top">

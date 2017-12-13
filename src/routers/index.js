@@ -2,15 +2,13 @@ import React, {Component} from 'react';
 import {createStore, combineReducers, applyMiddleware,compose} from 'redux'
 import createHistory from 'history/createBrowserHistory'
 import {Route} from 'react-router'
-import {ConnectedRouter, routerReducer, routerMiddleware, push} from 'react-router-redux'
+import {ConnectedRouter, routerReducer, routerMiddleware} from 'react-router-redux'
 import asyncComponent from '../utils/Bundlle'
-
-import reducers from './reducers'
 
 const Index = asyncComponent(() => import("../containers/Index"));
 const Login = asyncComponent(() => import("../containers/Login"));
-const ForgetPwd = asyncComponent(() => import("../components/login/ForgetPwd"));
-const Register = asyncComponent(() => import("../components/login/Register"));
+const ForgetPwd = asyncComponent(() => import("../containers/ForgetPwd"));
+const Register = asyncComponent(() => import("../containers//Register"));
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()

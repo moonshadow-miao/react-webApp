@@ -17,6 +17,9 @@ let citys = {
   '6':'广州',
 }
 
+const GoToTop = window.common.GoToTop,
+  FooterTip = window.common.FooterTip;
+
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -57,8 +60,6 @@ class Index extends Component {
   }
 
   render() {
-    let GoToTop = window.common.GoToTop,
-        FooterTip = window.common.FooterTip;
     return (
       <div onClick={this.hideCities} className='index'>
         <GoToTop />

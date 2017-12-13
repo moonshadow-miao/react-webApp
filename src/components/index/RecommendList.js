@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Icon} from 'antd-mobile';
-import _map from 'lodash/map'
 
 let list = [
   {
