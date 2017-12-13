@@ -57,8 +57,12 @@ class Index extends Component {
   }
 
   render() {
+    let GoToTop = window.common.GoToTop,
+        FooterTip = window.common.FooterTip;
     return (
       <div onClick={this.hideCities} className='index'>
+        <GoToTop />
+        <FooterTip />
         {/*banner部分*/}
         <div className="banner">
           <img src={this.state.banner} alt="暂无图片"/>

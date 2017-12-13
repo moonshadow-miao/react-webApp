@@ -7,8 +7,84 @@
 }
 
 /*公共的样式*/
-#app {
-  height: 100%;
+// 公共组件 头部
+.back {
+  height: .9rem;
+  position: relative;
+  text-align: center;
+  img {
+    position: absolute;
+    left: 0;
+    width: .95rem;
+    height: .95rem;
+    padding: .3rem;
+  }
+  span{
+    line-height: .9rem;
+  }
+}
+// 公共组件 返回页面顶部
+.goTop{
+  position: fixed;
+  z-index: 10;
+  right: .4rem;
+  bottom: 1.6rem;
+  width: 1rem;
+  height: 1rem;
+  padding: .2rem;
+  border-radius: 50%;
+  border: 1px solid #999;
+  background-color: #fff;
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+// 公共组件 底部下载
+.footer{
+  position: fixed;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  background: #fff;
+  font-size: .24rem;
+  width: 100%;
+  color: #000;
+  padding: .2rem 0;
+  height: 1.24rem;
+  border-top: 2px solid #f2f2f2;
+  box-shadow: 0 0 12px #888;
+  .close{
+    width: .8rem;
+    height: 100%;
+    padding: .2rem;
+  }
+  .logo{
+    img{
+      width: .8rem;
+      height: .8rem;
+      border-radius: 5px;
+      margin-right: .2rem;
+    }
+  }
+  .text{
+    h3{
+      font-size: .28rem;
+    }
+    p{
+      line-height: .42rem;
+      font-size: .24rem;
+    }
+  }
+  .download{
+    padding: .08rem .2rem;
+    margin-top: .12rem;
+    border-radius: 4px;
+    background-color: red;
+    color: #fff;
+    margin-right: .2rem;
+    font-size: .24rem;
+  }
 }
 
 .text-primary {
@@ -34,6 +110,7 @@ i, b,em {
 @charset "utf-8";
 
 html, body {
+  overflow-y: scroll;
   background: #fff;
   color: #505050;
   height: 100%;

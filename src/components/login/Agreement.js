@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-export default function Agreement() {
+export default () => {
   return (<div className='modal'>
       <div className="dialog">
         <div className="title1">巴乐兔服务与隐私协议</div>

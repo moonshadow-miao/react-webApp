@@ -3,7 +3,6 @@ import '../assets/css/login.less'
 import {Modal} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import asyncComponent from "../utils/Bundlle";
-
 const Agreement = asyncComponent(() => import("../components/login/Agreement"));
 class Login extends Component {
   constructor(props) {
@@ -41,12 +40,11 @@ class Login extends Component {
   }
 
   render() {
+    let HeaderNav = window.common.HeaderNav;
     return (
       <div className='login'>
         <div className="top">
-          <div className="back">
-            <img className='fl' src={require('../assets/image/left.png')} alt=""/>
-          </div>
+          <HeaderNav/>
           <div className="logo">
             <img src='http://localhost:3030/image/login_logo.png' alt=""/>
             <div className="wave"><div></div></div>
