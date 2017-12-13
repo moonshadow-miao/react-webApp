@@ -8,9 +8,9 @@ import asyncComponent from '../utils/Bundlle'
 import reducers from './reducers'
 
 const Index = asyncComponent(() => import("../containers/Index"));
-
 const Login = asyncComponent(() => import("../containers/Login"));
-
+const ForgetPwd = asyncComponent(() => import("../components/login/ForgetPwd"));
+const Register = asyncComponent(() => import("../components/login/Register"));
 
 // Create a history of your choosing (we're using a browser history in this case)
 const history = createHistory()
@@ -35,6 +35,8 @@ class Router extends Component {
         <div>
           <Route exact path="/" component={Index}/>
           <Route exact path="/login" component={Login}/>
+          <Route exact path="/forget-pwd" component={ForgetPwd}/>
+          <Route exact path="/register" component={Register}/>
         </div>
       </ConnectedRouter>);
   }

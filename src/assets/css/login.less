@@ -1,40 +1,46 @@
 @keyframes move_wave {
-  0% {transform: translateX(0) translateZ(0) scaleY(1);}
-  50% {transform: translateX(-25%) translateZ(0) scaleY(0.5);}
-  100% {transform: translateX(-50%) translateZ(0) scaleY(1);}
+  0% {
+    transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) translateZ(0) scaleY(0.5);
+  }
+  100% {
+    transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
 }
 
-.login{
-  .top{
+.login {
+  .top {
     text-align: center;
     width: 100%;
     height: 4rem;
-    background-image: linear-gradient(90deg,#ff8084 20%,#ff9696 80%);
-    .back{
-      background-image: linear-gradient(90deg,#ff8084 20%,#ff9696 80%);
+    background-image: linear-gradient(90deg, #ff8084 20%, #ff9696 80%);
+    .back {
+      background-image: linear-gradient(90deg, #ff8084 20%, #ff9696 80%);
       height: .9rem;
-      img{
+      img {
         width: .95rem;
         height: .95rem;
         padding: .3rem;
       }
     }
-    .logo{
+    .logo {
       width: 100%;
       position: relative;
       padding-top: .15rem;
       height: 3.2rem;
       overflow: hidden;
-      img{
+      img {
         width: 3.4rem;
         height: 1.32rem;
       }
-      .wave{
+      .wave {
         position: absolute;
         width: 100%;
         height: 100%;
         top: 0;
-        div{
+        div {
           width: 200%;
           height: 100%;
           transform-origin: center bottom;
@@ -42,26 +48,26 @@
           background-position: 0 bottom;
           background-size: 50% 40px;
         }
-        &:nth-of-type(1){
+        &:nth-of-type(1) {
           z-index: 3;
           opacity: .5;
-          div{
+          div {
             background-image: url(//localhost:3030/image/wave-top.png);
             animation: move_wave 3s;
             animation-delay: 3s;
           }
         }
-        &:nth-of-type(2){
+        &:nth-of-type(2) {
           z-index: 2;
           opacity: .75;
-          div{
+          div {
             background-image: url(//localhost:3030/image/wave-mid.png);
             animation: move_wave 10s linear infinite;
           }
         }
-        &:nth-of-type(3){
+        &:nth-of-type(3) {
           z-index: 1;
-          div{
+          div {
             background-image: url(//localhost:3030/image/wave-bot.png);
             animation: move_wave 17s linear infinite;
             animation-delay: 12s;
@@ -70,21 +76,110 @@
       }
     }
   }
-  .tab{
+  .tab {
     width: 60%;
     padding: .2rem 0;
     margin: 0 auto;
-    .tab_sub{
+    .tab_sub {
       display: inline-block;
       padding: 12px 0;
       width: 36%;
       margin: 0 7%;
       text-align: center;
       font-size: .3rem;
-      &.active{
+      &.active {
         color: #ef4c55;
         border-bottom: .04rem solid #ef4c55;
       }
     }
   }
+  .form {
+    padding: .5rem 9% .5rem;
+    text-align: center;
+    .input {
+      padding: .2rem 0 .2rem .6rem;
+      font-size: .32rem;
+      margin-bottom: .38rem;
+      background: #f2f2f2;
+      border-radius: .4rem;
+      text-align: left;
+      em {
+        color: darkgray;
+      }
+      input {
+        //background: url() 0 no-repeat;
+        background: #f2f2f2;
+        line-height: .4rem;
+        width: 3rem;
+        margin: .04rem 0 0 .1rem;
+        color: #5f6162;
+      }
+      span {
+        color: #ef4c55;
+        padding: 0 10px;
+        height: .48rem;
+        line-height: .48rem;
+        width: 2rem;
+        float: right;
+      }
+    }
+    .tip, .tip a {
+      color: #ef4c55;
+      font-size: .26rem;
+    }
+    .login_btn {
+      background-image: linear-gradient(90deg, #ff8084 20%, #ff9696 80%);
+      background: #bdbdbe;
+      border-radius: 20px;
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      border: none;
+      line-height: .7rem;
+      margin-top: .7rem;
+      outline: none;
+      width: 2.67rem;
+      height: .7rem;
+    }
+    .register{
+      padding: 0 1%;
+      span{
+        color: #ef4c55;
+        font-size: .26rem;
+      }
+    }
+  }
+  .agreement {
+    width: 100%;
+    text-align: center;
+    margin-top: 8%;
+    font-size: .26rem;
+    span {
+      color: #ff1e00;
+      font-size: .26rem;
+    }
+  }
 }
+
+.loginContainer .am-modal.am-modal-transparent {
+  width: 6rem;
+}
+
+.modal {
+  text-align: left;
+  height: 11rem;
+  padding: 5%;
+  .title1 {
+    width: 100%;
+    text-align: left;
+    font-size: 1.5em;
+    padding-bottom: 20px;
+    color: #000;
+    margin-top: 20px;
+  }
+  .title2 {
+    color: #000;
+    margin-top: 20px;
+  }
+}
+
