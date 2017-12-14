@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux'
-import router from './routers/index'
-const {store ,Router} = router
+import Router from './routers/index'
+import store from './store/index'
 
 class App extends Component {
   render() {
