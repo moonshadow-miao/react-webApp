@@ -6,6 +6,29 @@
   font-size: 14px;
 }
 
+
+.transitionWrapper-enter.transitionWrapper-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 10s ease-out;
+}
+
+.transitionWrapper-enter {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.transitionWrapper-leave {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.transitionWrapper-leave.transitionWrapper-leave-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: all 10s ease-out;
+}
+
 /*公共的样式*/
 // 公共组件 头部
 .back {

@@ -4,6 +4,7 @@ import {Route} from 'react-router-dom'
 import {ConnectedRouter} from 'react-router-redux'
 import asyncComponent from '../utils/Bundlle'
 import {Modal} from 'antd-mobile';
+import ReactCSSTransitionGroup  from "react-addons-css-transition-group";
 const alert = Modal.alert;
 
 const Index = asyncComponent(() => import("../containers/Index"));
@@ -35,20 +36,22 @@ history.block((location, action) => {
   }
 })
 
-history.listen((location, action) => {
-  console.log(`The current URL is ${location.pathname},search:${location.search},hash:${location.hash}`)
-  console.log(`The last navigation action was ${action}`)
-});
+// history.listen((location, action) => {
+//   console.log(`The current URL is ${location.pathname},search:${location.search},hash:${location.hash}`)
+//   console.log(`The last navigation action was ${action}`)
+// });
+
+const animate = (Component)=> ({ match, ...rest }) => (<ReactCSSTransitionGroup transitionName="transitionWrapper" component="div" transitionEnterTimeout={10000} transitionLeaveTimeout={10000}  >{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
 
 class Router extends Component {
   render() {
     return (
       <ConnectedRouter history={history}>
         <div>
-          <Route exact path="/" component={Index}/>
-          <Route exact path="/login" component={Login}/>
-          <Route exact path="/forget-pwd" component={ForgetPwd}/>
-          <Route exact path="/register" component={Register}/>
+            <Route exact path="/" children={animate(Index)} />
+            <Route exact path="/login" children={animate(Login)} />
+            <Route exact path="/forget-pwd" component={animate(ForgetPwd)}/>
+            <Route exact path="/register" component={animate(Register)}/>
         </div>
       </ConnectedRouter>);
   }
