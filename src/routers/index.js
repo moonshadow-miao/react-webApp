@@ -41,7 +41,12 @@ history.block((location, action) => {
 //   console.log(`The last navigation action was ${action}`)
 // });
 
-const animate = (Component)=> ({ match, ...rest }) => (<ReactCSSTransitionGroup transitionName="transitionWrapper" component="div" transitionEnterTimeout={10000} transitionLeaveTimeout={10000}  >{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
+const firstChild = props => {
+  const childrenArray = React.Children.toArray(props.children);
+  return childrenArray[0] || null;
+};
+
+const animate = (Component)=> ({ match, ...rest }) => (<ReactCSSTransitionGroup transitionName="transitionWrapper" component={firstChild} transitionEnterTimeout={400} transitionLeaveTimeout={400}  >{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
 
 class Router extends Component {
   render() {
