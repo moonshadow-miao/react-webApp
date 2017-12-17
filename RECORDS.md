@@ -9,5 +9,6 @@
 ##使用koa
 ##数据库选择mongodb和mongose连接koa
 mongod.exe --dbpath c:/data/baletu
+.\mongod.exe --dbpath c:/data/baletu    // window powershell
 ##引入Font Awesome 字体图标库
 url: http://www.bootcss.com/p/font-awesome/#whats-new
