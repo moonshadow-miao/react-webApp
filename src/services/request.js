@@ -1,4 +1,6 @@
 import {Toast,ActivityIndicator} from 'antd-mobile';
+import {loading,loaded} from '../store/actions/common'
+import store from '../store/index'
 
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
@@ -27,23 +29,25 @@ export default function request(url, options) {
     };
     newOptions.body = JSON.stringify(newOptions.body);
   }
-  Toast.loading('拼命加载中!', 0);
+  store.dispatch(loading());
   return fetch(url, newOptions)
   .then(checkStatus)
-  .then(response =>{
-    Toast.hide();
-    let res = response.json(),
-        data = null;
-    res.code === 200 ? data = res.data : Toast.fail(res.msg, 1.5);
-    return data
+  .then(async response =>{
+    store.dispatch(loaded());
+    let res = await response.json();
+    if(res.code ===200){
+      return Promise.resolve(res.data)
+    }else {
+      throw new Error(res.msg);
+    }
   })
   .catch((error) => {
-    Toast.hide();
+    store.dispatch(loaded());
     if (error.code) {
-      Toast.fail(error.name + error.msg, 1.5)
+      Toast.fail(error.name + error.message, 1.5)
     }
-    if ('stack' in error && 'message' in error) {
-      Toast.fail(`请求错误: ${url}`+ error.msg, 1.5)
+    if ('message' in error) {
+      Toast.fail(error.message, 1.5)
     }
     return error;
   });

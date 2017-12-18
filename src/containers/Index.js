@@ -39,6 +39,7 @@ class Index extends Component {
 
   componentWillMount(){
     this.props.actions.getBanner();
+    this.props.actions.getPoster();
   }
 
   componentDidMount(props) {}

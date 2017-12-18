@@ -1,7 +1,18 @@
 import * as actions from '../actionsType'
-import {Api_getBanner} from '../../services/api'
+import {Api_getBanner, Api_getPoster} from '../../services/api'
+
 export function getBanner() {
-  Api_getBanner().then(res=>{
-    if(res) return { type:actions.GET_INDEX_BANNER, payload: res.imgUrl }
-  }) ;
+  return (dispatch)=>{
+    Api_getBanner().then(res=>{
+      dispatch({ type:actions.GET_INDEX_BANNER, payload: res.imgUrl })
+    }) ;
+  }
+}
+
+export function getPoster() {
+  return (dispatch)=>{
+    Api_getPoster().then(res=>{
+      dispatch({ type:actions.GET_INDEX_POSTER, payload: res.imgUrl })
+    }) ;
+  }
 }
