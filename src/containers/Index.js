@@ -4,6 +4,7 @@ import {Icon} from 'antd-mobile';
 import '../assets/css/index.less'
 import _map from 'lodash/map'
 import asyncComponent from "../utils/Bundlle";
+import {connect} from 'react-redux'
 
 const RecommendList = asyncComponent(() => import("../components/index/RecommendList"));
 
@@ -20,6 +21,9 @@ let citys = {
 const GoToTop = window.common.GoToTop,
   FooterTip = window.common.FooterTip;
 
+@connect(state => ({
+  state
+}))
 class Index extends Component {
   constructor(props) {
     super(props);
@@ -33,10 +37,14 @@ class Index extends Component {
 
   componentWillMount(){
     this.setState({
-      banner:'http://localhost:3030/image/main.png',
-      poster:'http://localhost:3030/image/post.gif'
+      banner:RES_URL + '/image/main.png',
+      poster:RES_URL + 'image/post.gif'
     })
   }
+
+  componentDidMount(props) {
+  }
+
 
   showCities = (event)=>{
     event.stopPropagation();
@@ -62,53 +70,54 @@ class Index extends Component {
   render() {
     return (
       <div onClick={this.hideCities} className='index'>
-        <GoToTop />
-        <FooterTip />
-        {/*banner部分*/}
-        <div className="banner">
-          <img src={this.state.banner} alt="暂无图片"/>
-          <div className="city_select">
-            <span onClick={this.showCities}>{this.state.city}</span>
-            <div className={this.state.cityControl} >
-              {
-                _map(citys,(v,i)=>(
-                  <p key={i} onClick={this.changeCity.bind(this,i,v)}>{v}</p>
-                ))
-              }
-            </div>
-          </div>
-          <Link to='/login'>
-            <div className="login">
-              <img src={require('../assets/image/my.png')} alt=""/>
-            </div>
-          </Link>
-          <div className="search">
-            <Icon type='search' size='lg'/>
-            <span> 输入区域，小区搜索房源</span>
-          </div>
-        </div>
+          <GoToTop />
+          <FooterTip />
 
-        {/*分类导航和广告部分*/}
-        <ul className='nav'>
-          <li>
-            <img src={require('../assets/image/nav1.png')} alt=""/>
-          </li>
-          <li>
-            <img src={require('../assets/image/nav2.png')} alt=""/>
-          </li>
-          <li>
-            <img src={require('../assets/image/nav3.png')} alt=""/>
-          </li>
-          <li>
-            <img src={require('../assets/image/nav4.png')} alt=""/>
-          </li>
-        </ul>
-        <div className="poster">
-          <img src = {this.state.poster} alt=""/>
-        </div>
+            {/*banner部分*/}
+            <div className="banner">
+              <img src={this.state.banner} alt="暂无图片"/>
+              <div className="city_select">
+                <span onClick={this.showCities}>{this.state.city}</span>
+                <div className={this.state.cityControl} >
+                  {
+                    _map(citys,(v,i)=>(
+                      <p key={i} onClick={this.changeCity.bind(this,i,v)}>{v}</p>
+                    ))
+                  }
+                </div>
+              </div>
+              <Link to='/login'>
+                <div className="login">
+                  <img src={require('../assets/image/my.png')} alt=""/>
+                </div>
+              </Link>
+              <div className="search">
+                <Icon type='search' size='lg'/>
+                <span> 输入区域，小区搜索房源</span>
+              </div>
+            </div>
 
-        {/*租户列表部分*/}
-        <RecommendList />
+            {/*分类导航和广告部分*/}
+            <ul className='nav'>
+              <li>
+                <img src={require('../assets/image/nav1.png')} alt=""/>
+              </li>
+              <li>
+                <img src={require('../assets/image/nav2.png')} alt=""/>
+              </li>
+              <li>
+                <img src={require('../assets/image/nav3.png')} alt=""/>
+              </li>
+              <li>
+                <img src={require('../assets/image/nav4.png')} alt=""/>
+              </li>
+            </ul>
+            <div className="poster">
+              <img src = {this.state.poster} alt=""/>
+            </div>
+
+            {/*租户列表部分*/}
+            <RecommendList />
       </div>
     );
   }

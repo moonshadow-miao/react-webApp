@@ -1,6 +1,7 @@
 import KoaRouter from 'koa-router';
 import upload from './router/upload'
 import user from './router/user'
+import index from './router/index'
 
 const router = KoaRouter({prefix: '/api'});
 

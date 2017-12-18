@@ -12,3 +12,20 @@ mongod.exe --dbpath c:/data/baletu
 .\mongod.exe --dbpath c:/data/baletu    // window powershell
 ##引入Font Awesome 字体图标库
 url: http://www.bootcss.com/p/font-awesome/#whats-new
+##router 路由切换的动画
+##eslint的设置 ,全部变量的设置
+    在webpack中设置全部变量
+    new webpack.DefinePlugin(Object.assign(env.stringified,{RES_URL :JSON.stringify("http://localhost:3030")})),
+    
+    在 .eslintrc中配置
+    {
+      "env": {
+        "browser": true,
+        "node": true
+      },
+      "parser": "babel-eslint",
+      "globals": {
+        "RES_URL": true,   // 使用全局变量
+        "__DEV__": true
+      }
+    }

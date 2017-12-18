@@ -24,11 +24,15 @@ export default function request(url, options) {
     };
     newOptions.body = JSON.stringify(newOptions.body);
   }
-
+  Toast.loading('拼命加载中!', 0);
   return fetch(url, newOptions)
   .then(checkStatus)
-  .then(response => response.json())
+  .then(response =>{
+    Toast.hide();
+    return response.json()
+  })
   .catch((error) => {
+    Toast.hide();
     if (error.code) {
       Toast.fail(error.name + error.message, 1.5)
     }

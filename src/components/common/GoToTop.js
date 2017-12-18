@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {throttle} from '../../utils/index'
-
 class GoToTop extends Component {
   constructor(props) {
     super(props);
