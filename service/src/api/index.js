@@ -5,8 +5,10 @@ import index from './router/index'
 
 const router = KoaRouter({prefix: '/api'});
 
-router.use('/upload', upload.routes())
+router
 .use('/user', user.routes())
+.use('/info', index.routes())
+.use('/upload', upload.routes())
 
 export default router
 

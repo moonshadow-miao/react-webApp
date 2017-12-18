@@ -1,10 +1,16 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
 import {Icon} from 'antd-mobile';
 import '../assets/css/index.less'
 import _map from 'lodash/map'
 import asyncComponent from "../utils/Bundlle";
 import {connect} from 'react-redux'
+import * as actions from '../store/actions/indexList'
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(actions, dispatch) };
+}
 
 const RecommendList = asyncComponent(() => import("../components/index/RecommendList"));
 
@@ -21,30 +27,21 @@ let citys = {
 const GoToTop = window.common.GoToTop,
   FooterTip = window.common.FooterTip;
 
-@connect(state => ({
-  state
-}))
+@connect(state => ({...state.reducers.index}), mapDispatchToProps)
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
       city:'上海',
       cityControl: "cities hide",
-      banner:'',
-      poster:''
     };
   }
 
   componentWillMount(){
-    this.setState({
-      banner:RES_URL + '/image/main.png',
-      poster:RES_URL + 'image/post.gif'
-    })
+    this.props.actions.getBanner();
   }
 
-  componentDidMount(props) {
-  }
-
+  componentDidMount(props) {}
 
   showCities = (event)=>{
     event.stopPropagation();
@@ -72,10 +69,9 @@ class Index extends Component {
       <div onClick={this.hideCities} className='index'>
           <GoToTop />
           <FooterTip />
-
             {/*banner部分*/}
             <div className="banner">
-              <img src={this.state.banner} alt="暂无图片"/>
+              <img src={RES_URL + this.props.banner} alt="暂无图片"/>
               <div className="city_select">
                 <span onClick={this.showCities}>{this.state.city}</span>
                 <div className={this.state.cityControl} >
@@ -113,7 +109,7 @@ class Index extends Component {
               </li>
             </ul>
             <div className="poster">
-              <img src = {this.state.poster} alt=""/>
+              <img src = {RES_URL + this.props.poster} alt=""/>
             </div>
 
             {/*租户列表部分*/}

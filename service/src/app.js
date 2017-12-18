@@ -47,7 +47,7 @@ app.use(resource);
 
 // 设置跨域请求设置
 const corsOptions = {
-  origin: 'http://locahost:3000',
+  origin: 'http://localhost:3020',
   optionsSuccessStatus: 204, // some legacy browsers (IE11, various SmartTVs) choke on 204
   credentials: true,
   maxAge: 43200

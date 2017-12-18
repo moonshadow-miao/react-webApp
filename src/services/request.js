@@ -10,7 +10,10 @@ function checkStatus(response) {
   throw error;
 }
 
+const BASE_URL = 'http://localhost:3030'
+
 export default function request(url, options) {
+  url = BASE_URL + url;
   const defaultOptions = {
     credentials: 'include',
   };
@@ -29,15 +32,18 @@ export default function request(url, options) {
   .then(checkStatus)
   .then(response =>{
     Toast.hide();
-    return response.json()
+    let res = response.json(),
+        data = null;
+    res.code === 200 ? data = res.data : Toast.fail(res.msg, 1.5);
+    return data
   })
   .catch((error) => {
     Toast.hide();
     if (error.code) {
-      Toast.fail(error.name + error.message, 1.5)
+      Toast.fail(error.name + error.msg, 1.5)
     }
     if ('stack' in error && 'message' in error) {
-      Toast.fail(`请求错误: ${url}`+ error.message, 1.5)
+      Toast.fail(`请求错误: ${url}`+ error.msg, 1.5)
     }
     return error;
   });

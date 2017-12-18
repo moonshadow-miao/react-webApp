@@ -1,7 +1,7 @@
 import request from './request'
 
 export async function Api_getBanner() {
-  return request(`/api/get-banner?`);
+  return request('/api/info/get-banner');
 }
 
 export async function removeRule(params) {
