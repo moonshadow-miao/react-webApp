@@ -1,7 +1,7 @@
 // 节流函数
 export let throttle = (fn, delay = 100) => {
   let timer = null;
-  return () => {
+  return function on() {
     clearTimeout(timer);
     timer = setTimeout(() => {
       fn && fn();

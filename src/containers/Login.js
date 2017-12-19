@@ -21,6 +21,10 @@ class Login extends Component {
     document.body.className = 'loginContainer'
   }
 
+  componentWillUnmount(){
+    document.body.className = ''
+  }
+
   changeTab(type){
     this.setState({
       formData: Object.assign(this.state.formData,{active:type})
@@ -43,7 +47,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='login'>
+      <div className='login container'>
         <div className="top">
           <HeaderNav/>
           <div className="logo">

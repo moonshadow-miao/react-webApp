@@ -11,7 +11,7 @@ class Register extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <HeaderNav title='欢迎注册'/>
         <RegisterInput type='1' submit={()=>{}}/>
       </div>

@@ -6,9 +6,10 @@ import '../assets/css/index.less'
 import asyncComponent from "../utils/Bundlle";
 import {connect} from 'react-redux'
 import {storeCityId} from '../store/actions/common'
+import {setIndexSite} from '../store/actions/indexList'
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators({storeCityId}, dispatch) };
+  return { actions: bindActionCreators({storeCityId,setIndexSite}, dispatch) };
 }
 
 const RecommendList = asyncComponent(() => import("../components/index/RecommendList"));
@@ -26,18 +27,18 @@ class Index extends Component {
     };
   }
 
-  componentWillMount(){
-
-  }
-
-  componentDidMount(props) {}
-
   showCities = (event)=>{
     event.stopPropagation();
     let className = this.state.cityControl.indexOf('hide') === -1 ? 'cities hide' : 'cities';
     this.setState({
       cityControl: className
      })
+  }
+
+  componentWillUnmount() {
+    let site = document.body.scrollTop;
+    this.refs.index.style.top = site * (-1);
+    console.log(this.refs.index.style);
   }
 
   hideCities = ()=>{
@@ -55,8 +56,8 @@ class Index extends Component {
 
   render() {
     return (
-      <div onClick={this.hideCities} className='index'>
-          <GoToTop />
+      <div onClick={this.hideCities} className='index container' ref ='index'>
+          <GoToTop site = {this.props.indexSite} setSite={this.props.actions.setIndexSite} />
           <FooterTip />
             {/*banner部分*/}
             <div className="banner">

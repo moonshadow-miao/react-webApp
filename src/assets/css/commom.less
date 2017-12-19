@@ -6,6 +6,12 @@
   font-size: 14px;
 }
 
+.container{
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
 .transitionWrapper-enter {
   position: absolute;
   top: 0;
@@ -21,10 +27,8 @@
   transition: all 0.4s ease-out;
 }
 .transitionWrapper-leave {
-  position: absolute;
   height: 100%;
   background: #fff;
-  top: 0;
   z-index: 100;
   opacity: 1;
   transform: translateX(0);

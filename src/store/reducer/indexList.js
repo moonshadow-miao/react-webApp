@@ -5,7 +5,8 @@ const index = {
   poster: '',  // 首页中部广告动图
   city: [],    // 城市列表,顶部切换下拉框,
   recommendRoom: {},  // 精选房源
-  roomList: []
+  roomList: [],
+  indexSite: 0
 };
 
 export default function list(state = index, action) {
@@ -14,6 +15,8 @@ export default function list(state = index, action) {
       return {...state, banner: action.payload};
     case actions.GET_INDEX_POSTER:
       return {...state, poster: action.payload};
+    case actions.SET_INDEX_SITE :
+      return {...state, indexSite: action.payload};
     default:
       return state
   }

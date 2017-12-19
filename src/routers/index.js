@@ -5,12 +5,12 @@ import {ConnectedRouter} from 'react-router-redux'
 import asyncComponent from '../utils/Bundlle'
 import {Modal} from 'antd-mobile';
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
-import * as actions from '../store/actions/indexList'
 import {storeCities} from '../store/actions/common'
+import {getIndexImg} from '../store/actions/indexList'
 
 const alert = Modal.alert;
 
-const Index = asyncComponent(() => import("../containers/Index"),  {...actions, storeCities,component:'index'});
+const Index = asyncComponent(() => import("../containers/Index"),  {storeCities,getIndexImg,component:'index'});
 const Login = asyncComponent(() => import("../containers/Login"));
 const ForgetPwd = asyncComponent(() => import("../containers/ForgetPwd"));
 const Register = asyncComponent(() => import("../containers//Register"));

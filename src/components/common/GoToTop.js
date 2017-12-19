@@ -1,20 +1,32 @@
 import React, {Component} from 'react';
-import {throttle} from '../../utils/index'
+import PropTypes from 'prop-types';
+
+let timer = null;
+function throttle() {
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    this.setState({
+      show: document.body.scrollTop > 200
+    });
+  }, 100);
+}
+
 class GoToTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: false
+      show: this.props.site > 200
     };
   }
 
+  componentWillUnmount() {
+    this.props.setSite(document.body.scrollTop);
+    document.body.removeEventListener("scroll", throttle.bind(this), false);
+  }
+
   componentDidMount() {
-    document.body.addEventListener("scroll", throttle(() => {
-      let isShow = document.body.scrollTop > 200;
-      this.setState({
-        show: isShow
-      })
-    }));
+    document.body.scrollTop = this.props.site;
+    document.body.addEventListener("scroll", throttle.bind(this),false);
   }
 
   goTop() {
@@ -29,5 +41,11 @@ class GoToTop extends Component {
     )
   }
 }
+
+GoToTop.propTypes = {
+  setSite: PropTypes.func,
+  site: PropTypes.number
+}
+
 
 export default GoToTop

@@ -18,7 +18,8 @@ export default function asyncComponent(importComponent,actions,cb) {
           await this.props.dispatch(actions[k]());
         }
       }
-      if(actions && actions.component && getSession(actions.component) === null){
+      // if(actions && actions.component && getSession(actions.component) === null){   // todo
+      if(actions && actions.component){
         for(let k in actions){
           if(k !== 'component') await this.props.dispatch(actions[k]());
         }

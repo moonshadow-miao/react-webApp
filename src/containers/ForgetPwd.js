@@ -11,7 +11,7 @@ class ForgetPwd extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <HeaderNav title='忘记密码'/>
         <RegisterInput type='2' submit={()=>{}}/>
       </div>

@@ -2,9 +2,9 @@ import * as actions from '../actionsType'
 import {Toast} from 'antd-mobile';
 
 const initState = {
-  loading: false,
-  cities: [],
-  currentCityId: '',
+  loading: false,   // 控制请求的loading的开关
+  cities: [],       // 城市列表
+  currentCityId: '' // 当前选择的城市id
 };
 
 export default function list(state = initState, action) {
