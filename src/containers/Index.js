@@ -36,9 +36,7 @@ class Index extends Component {
   }
 
   componentWillUnmount() {
-    let site = document.body.scrollTop;
-    this.refs.index.style.top = site * (-1);
-    console.log(this.refs.index.style);
+
   }
 
   hideCities = ()=>{
