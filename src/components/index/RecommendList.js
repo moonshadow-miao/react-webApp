@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {Icon} from 'antd-mobile';
+ import {Icon} from 'antd-mobile';
+import PropTypes from 'prop-types';
 
 let list = [
   {
@@ -131,43 +132,39 @@ let tag = {
   '2':'朝南阳光房'
 }
 
-class RecommendList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div>
-        {
-          lists.map((v, i) => (
-            <div className="recommend_list" key={i}>
-              <div className="title">
-                <h3 className='fl'>{tag[v.tag]}</h3>
-                <div className='fr'>
-                  <span>查看更多</span>
-                  <Icon type='right' size='lg' />
-                </div>
+const RecommendList = (props)=>{
+  return (
+    <div>
+      {
+        lists.map((v, i) => (
+          <div className="recommend_list" key={i}>
+            <div className="title">
+              <h3 className='fl'>{tag[v.tag]}</h3>
+              <div className='fr'>
+                <span>查看更多</span>
+                <Icon type='right' size='lg' />
               </div>
-              <div className='rooms'>
-                <ul className="room_list">
-                  {
-                    v.list.length && v.list.map((v,i)=>(
-                      <li key={i} className="room">
-                        <div className="room_img"><img src='https://cdn.baletoo.cn/Uploads/housephoto/1567/1566294/oss_5a1f7565c8c73.jpg@!380_280.png' alt=""/></div>
-                        <div className="room_name">{'dddddd'}</div>
-                        <div className="price">￥{'2200'}</div>
-                      </li>))
-                  }
-                </ul>
-              </div>
-            </div>))
-        }
+            </div>
+            <div className='rooms'>
+              <ul className="room_list">
+                {
+                  v.list.length && v.list.map((v,i)=>(
+                    <li key={i} className="room">
+                      <div className="room_img"><img src='https://cdn.baletoo.cn/Uploads/housephoto/1567/1566294/oss_5a1f7565c8c73.jpg@!380_280.png' alt=""/></div>
+                      <div className="room_name">{'dddddd'}</div>
+                      <div className="price">￥{'2200'}</div>
+                    </li>))
+                }
+              </ul>
+            </div>
+          </div>))
+      }
+    </div>
+  );
+}
 
-      </div>
-    );
-  }
+RecommendList.propTypes = {
+  lists:PropTypes.array,
 }
 
 export default RecommendList;

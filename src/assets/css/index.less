@@ -2,6 +2,20 @@
   background-color: #f0f0f0;
   overflow-x: hidden;
 }
+.title-text {
+  font-size: .34rem;
+  font-weight: 700;
+}
+.text-over {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.text-grey{
+  font-size: .24rem;
+  color: #9b9b9b;
+}
+
 // banner部分
 .banner {
   width: 100%;
@@ -130,16 +144,13 @@
         height: 3rem;
       }
       .room_name{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        .text-over;
         padding-top: .4rem;
-        font-size: .34rem;
-        font-weight: 700;
+        .title-text;
         color: #5a5c5d;
       }
       .price{
-        font-size: .32rem;
+        .title-text;
         padding-top: .3rem;
         color: #e8323f;
       }
@@ -148,3 +159,68 @@
 }
 
 // 推荐好房部分
+.goodRoom{
+  padding-bottom: 1.24rem;
+  background-color: #fff;
+  .title{
+    .title-text;
+    height: 1.18rem;
+    line-height: 1.18rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 0 .3rem;
+  }
+}
+.text-grey{
+
+}
+.goodRoom_list{
+  border-bottom: 1px solid #f0f0f0;
+  padding: .3rem;
+  .room_left{
+    margin-right: .2rem;
+    .img{
+      width: 2.86rem;
+      height: 2.16rem;
+    }
+    .star{
+      margin-top: .2rem;
+    }
+  }
+  .room_right{
+    width: 3.8rem;
+    .name{
+      .title-text;
+      color: #5a5c5d;
+      line-height: .44rem;
+      .text-over;
+    }
+    .price{
+      .title-text;
+      color: #e8323f;
+      height: .54rem;
+      line-height: .54rem;
+      img{
+        margin-left: .2rem;
+        width: .77rem;
+        height: .31rem;
+      }
+    }
+    .info{
+      .text-over;
+    }
+    .site{
+      line-height: .44rem;
+      .text-over;
+    }
+    .category{
+      span{
+        font-size: .24rem;
+        line-height: .36rem;
+        margin-right: .1rem;
+        padding: 0 .04rem;
+        color: #87bcda;
+        background-color: #eff6fa
+      }
+    }
+  }
+}
