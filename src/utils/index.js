@@ -17,3 +17,13 @@ export function request_param(paramObj) {
   }
   return param.slice(0,-1);
 }
+
+// 读取本地存储
+export function getSession(key) {
+  return JSON.parse(window.sessionStorage.getItem(key))
+}
+
+// 设置本地存储
+export function setSession(key,value) {
+  window.sessionStorage.setItem(key,JSON.stringify(value));
+}
