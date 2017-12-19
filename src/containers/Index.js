@@ -3,43 +3,31 @@ import { Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import {Icon} from 'antd-mobile';
 import '../assets/css/index.less'
-import _map from 'lodash/map'
 import asyncComponent from "../utils/Bundlle";
 import {connect} from 'react-redux'
-import * as actions from '../store/actions/indexList'
+import {storeCityId} from '../store/actions/common'
 
 function mapDispatchToProps(dispatch) {
-  return { actions: bindActionCreators(actions, dispatch) };
+  return { actions: bindActionCreators({storeCityId}, dispatch) };
 }
 
 const RecommendList = asyncComponent(() => import("../components/index/RecommendList"));
 
-let citys = {
-  '0':'上海',
-  '1':'北京',
-  '2':'深圳',
-  '3':'杭州',
-  '4':'南京',
-  '5':'苏州',
-  '6':'广州',
-}
-
 const GoToTop = window.common.GoToTop,
   FooterTip = window.common.FooterTip;
 
-@connect(state => ({...state.reducers.index}), mapDispatchToProps)
+@connect(state => ({...state.reducers.index,cities:state.reducers.common.cities,currentCityId:state.reducers.common.currentCityId}), mapDispatchToProps)
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city:'上海',
+      city:this.props.cities.find(v=>v.city_id === this.props.currentCityId).city_name,
       cityControl: "cities hide",
     };
   }
 
   componentWillMount(){
-    this.props.actions.getBanner();
-    this.props.actions.getPoster();
+
   }
 
   componentDidMount(props) {}
@@ -58,8 +46,8 @@ class Index extends Component {
     })
   }
   
-  changeCity(id,name){
-    console.log(id);
+  changeCity(name,id){
+    this.props.actions.storeCityId(id);
     this.setState({
       city:name
     })
@@ -77,8 +65,8 @@ class Index extends Component {
                 <span onClick={this.showCities}>{this.state.city}</span>
                 <div className={this.state.cityControl} >
                   {
-                    _map(citys,(v,i)=>(
-                      <p key={i} onClick={this.changeCity.bind(this,i,v)}>{v}</p>
+                    this.props.cities.map((v,i)=>(
+                      <p key={i} onClick={this.changeCity.bind(this,v.city_name,v.city_id)}>{v.city_name}</p>
                     ))
                   }
                 </div>

@@ -27,7 +27,7 @@ const errorHandler = async (ctx, next) => {
   } catch (err) {
     ctx.response.status = err.statusCode || err.status || 200;
     ctx.response.body = {
-      message: err.message
+      msg: err.message,
     };
   }
 };

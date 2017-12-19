@@ -1,6 +1,7 @@
 import * as actions from '../actionsType'
-import {Api_getBanner, Api_getPoster} from '../../services/api'
+import {Api_getBanner, Api_getPoster,Api_getCities} from '../../services/api'
 
+// 获取首页banner图
 export function getBanner() {
   return (dispatch)=>{
     Api_getBanner().then(res=>{
@@ -9,6 +10,7 @@ export function getBanner() {
   }
 }
 
+// 获取首页广告gif
 export function getPoster() {
   return (dispatch)=>{
     Api_getPoster().then(res=>{
@@ -16,3 +18,6 @@ export function getPoster() {
     }) ;
   }
 }
+
+//
+
