@@ -1,7 +1,8 @@
-// 首页相关 index
+// 页面相关 index ,findRoom
 export const GET_INDEX_BANNER = 'index/GET_INDEX_BANNER';
 export const GET_INDEX_POSTER = 'index/GET_INDEX_POSTER';
 export const SET_INDEX_SITE = 'index/SET_INDEX_SITE';
+export const SET_FIND_SITE = 'find/SET_FIND_SITE';
 export const GET_INDEX_RECOMMEND_ROOM = 'index/GET_INDEX_RECOMMEND_ROOM';
 export const GET_INDEX_ROOM_LIST = 'index/GET_INDEX_ROOM_LIST';
 
@@ -11,5 +12,6 @@ export const CLOSE_LOADING = 'common/CLOSE_LOADING';
 export const STORE_INDEX_CITIES = 'common/STORE_INDEX_CITIES';
 export const STORE_CURRENT_CITY = 'common/STORE_CURRENT_CITY';
 export const STORE_SEARCH_LIST = 'common/STORE_SEARCH_LIST';
+export const CLEAR_SEARCH_LIST = 'common/CLEAR_SEARCH_LIST';
 
 // 用户状态 user store

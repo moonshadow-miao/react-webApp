@@ -6,7 +6,8 @@ const index = {
   city: [],    // 城市列表,顶部切换下拉框,
   recommendRoom: {},  // 精选房源
   roomList: [],
-  indexSite: 0
+  indexSite: 0 , // 记录首页位置
+  findSite: 0 , // 记录找房页面位置
 };
 
 export default function list(state = index, action) {
@@ -17,6 +18,8 @@ export default function list(state = index, action) {
       return {...state, poster: action.payload};
     case actions.SET_INDEX_SITE :
       return {...state, indexSite: action.payload};
+    case actions.SET_FIND_SITE :
+      return {...state, findSite: action.payload};
     default:
       return state
   }

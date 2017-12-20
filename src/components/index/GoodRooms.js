@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Icon} from 'antd-mobile';
 import PropTypes from 'prop-types';
+import '../../assets/css/goodRoom.less'
 
 let lists = [
+  {},{},{},
   {
     "house_id": "867333",
     "lan_co_id": 4821,
@@ -127,7 +129,7 @@ let lists = [
 const GoodRooms = (props) => {
   return (
     <div className='goodRoom'>
-      <div className="title">推荐好房</div>
+      <div className={"title " + props.title? "" :"hide"}>{props.title}</div>
       {
         lists.map((v, i) => (
           <div className="goodRoom_list" key={i}>
@@ -174,5 +176,10 @@ const GoodRooms = (props) => {
 }
 GoodRooms.propTypes = {
   lists: PropTypes.array,
-}
+  title:PropTypes.string
+};
+GoodRooms.defaultProps = {
+  lists: [],
+  title:''
+};
 export default GoodRooms;

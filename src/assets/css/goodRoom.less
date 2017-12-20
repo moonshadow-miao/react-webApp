@@ -1,0 +1,106 @@
+@import "mixin";
+// 推荐好房部分
+.goodRoom {
+  padding-bottom: 1.24rem;
+  background-color: #fff;
+  .title {
+    .title-text;
+    height: 1.18rem;
+    line-height: 1.18rem;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 0 .3rem;
+  }
+}
+
+.goodRoom_list {
+  border-bottom: 1px solid #f0f0f0;
+  padding: .3rem;
+  .room_left {
+    margin-right: .2rem;
+    .img {
+      position: relative;
+    }
+    .pics {
+      padding-right: 0.05rem;
+      width: .6rem;
+      background-color: #ffa900;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-top-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+      text-align: center;
+      span {
+        font-size: .18rem;
+        color: #fff;
+        line-height: .18rem;
+      }
+    }
+    img {
+      width: 2.86rem;
+      height: 2.16rem;
+      border-radius: 2px;
+    }
+    .star_bg {
+      margin-top: .2rem;
+      height: .28rem;
+      background: url("../image/star.png") no-repeat top left/1.85rem .56rem;
+      position: relative;
+      .star {
+        position: relative;
+        height: .28rem;
+        width: 1.15rem;
+        overflow: hidden;
+      }
+      img {
+        position: absolute;
+        top: -.28rem;
+        height: .56rem;
+        width: 1.85rem;
+      }
+      span{
+        position: absolute;
+        right: 0;
+        top: 0;
+        .text-grey;
+      }
+    }
+  }
+  .room_right {
+    width: 3.8rem;
+    .name {
+      .title-text;
+      color: #5a5c5d;
+      line-height: .44rem;
+      .text-over;
+    }
+    .price {
+      .title-text;
+      color: #e8323f;
+      height: .54rem;
+      line-height: .54rem;
+      img {
+        margin-left: .2rem;
+        width: .77rem;
+        height: .31rem;
+      }
+    }
+    .info {
+      .text-over;
+    }
+    .site {
+      line-height: .44rem;
+      .text-over;
+    }
+    .category {
+      span {
+        font-size: .24rem;
+        line-height: .36rem;
+        margin-right: .1rem;
+        padding: 0 .04rem;
+        color: #87bcda;
+        background-color: #eff6fa
+      }
+    }
+  }
+}

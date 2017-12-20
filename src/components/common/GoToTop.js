@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 
 let timer = null;
@@ -12,16 +13,22 @@ function throttle() {
   }, 100);
 }
 
+@connect(state=>({pathname:state.router.location.pathname}))
 class GoToTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      show: this.props.site > 200
+      show: this.props.site > 200,
+      pathname:this.props.pathname
     };
   }
 
+  componentWillReceiveProps({pathname}){
+    // 路由发生变化
+    if(pathname!==this.state.pathname) this.props.setSite(document.querySelector('.container').scrollTop);
+  }
+
   componentWillUnmount() {
-    this.props.setSite(document.querySelector('.container').scrollTop);
     document.querySelector('.container').removeEventListener("scroll", throttle.bind(this), false);
   }
 
@@ -29,7 +36,7 @@ class GoToTop extends Component {
     let time = setTimeout(() => {
       clearTimeout(time)
       document.querySelector('.container').scrollTop = this.props.site;
-    }, 100)
+    }, 100);
     document.querySelector('.container').addEventListener("scroll", throttle.bind(this), false);
   }
 

@@ -27,7 +27,11 @@ export function storeCityId(id) {
 }
 
 // 存储当前搜索历史
-export function storeSearchList(list) {
-  return  { type:actions.STORE_SEARCH_LIST,payload:list}
+export function storeSearchList(item) {
+  return  { type:actions.STORE_SEARCH_LIST,payload:item}
 }
 
+// 清空当前搜索历史
+export function clearSearchList(list) {
+  return  { type:actions.CLEAR_SEARCH_LIST}
+}

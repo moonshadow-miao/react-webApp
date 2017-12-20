@@ -57,8 +57,8 @@ class Index extends Component {
 
   render() {
     return (
-      <div onClick={this.hideCities} className='index container' ref='index'>
-        <GoToTop site={this.props.indexSite} setSite={this.props.actions.setIndexSite}/>
+      <div onClick={this.hideCities} className='index container'>
+        <GoToTop site={this.props.indexSite} setSite={this.props.actions.setIndexSite} />
         <FooterTip/>
         {/*banner部分*/}
         <div className="banner">
@@ -109,7 +109,7 @@ class Index extends Component {
         <RecommendList lists = {[]} />
 
         {/*推荐好房列表部分*/}
-        <GoodRooms lists = {[]} />
+        <GoodRooms lists = {[]} title='推荐好房' />
       </div>
     );
   }

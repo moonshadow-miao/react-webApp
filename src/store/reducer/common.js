@@ -5,9 +5,8 @@ const initState = {
   loading: false,   // 控制请求的loading的开关
   cities: [],       // 城市列表
   currentCityId: '', // 当前选择的城市id
-  searchList:[]
+  searchList: []
 };
-
 export default function list(state = initState, action) {
   switch (action.type) {
     case actions.OPEN_LOADING:
@@ -21,7 +20,9 @@ export default function list(state = initState, action) {
     case actions.STORE_CURRENT_CITY :
       return {...state, currentCityId: action.payload};
     case actions.STORE_SEARCH_LIST :
-      return Object.assign({}, state, {searchList: action.payload});
+      return Object.assign({}, state, {searchList: [...state.searchList, action.payload]});
+    case actions.CLEAR_SEARCH_LIST :
+      return Object.assign({}, state, {searchList: []});
     default:
       return state
   }

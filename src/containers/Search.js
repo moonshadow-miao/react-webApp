@@ -1,13 +1,17 @@
 import React, {Component} from 'react';
-import {Icon} from 'antd-mobile'
+import {Modal, Icon} from 'antd-mobile';
 import '../assets/css/search.less'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {storeSearchList} from '../store/actions/common'
+import {storeSearchList, clearSearchList} from '../store/actions/common'
 
+const alert = Modal.alert;
 let list = ["上大路", "金桥", "魔方公寓", "七宝", "五角场", "徐汇", "川沙", "公寓", "张江", "宝山", "九亭"];
 
-@connect(state => ({searchList: state.reducers.common.searchList,}), dispatch => bindActionCreators({storeSearchList}, dispatch))
+@connect(state => ({searchList: state.reducers.common.searchList,}), dispatch => bindActionCreators({
+  storeSearchList,
+  clearSearchList
+}, dispatch))
 class Search extends Component {
   constructor(props) {
     super(props)
@@ -28,13 +32,21 @@ class Search extends Component {
     this.props.history.back();
   };
 
-  search = () => {
-
+  search = (option) => {
+    if(option)this.props.storeSearchList(this.state.search);
+    this.props.history.push('/find-rooms')
   };
 
-  changeSearch(name) {
+  clearSearch = () => {
+    alert('清空', '确认清空搜索历史?', [
+      {text: '否', onPress: () => {}},
+      {text: '是', onPress: () => this.props.clearSearchList()},
+    ]);
+  };
+
+  changeSearch(name,addHistory) {
     this.setState({search: name}, () => {
-      this.search()
+      this.search(addHistory)
     });
   }
 
@@ -54,7 +66,7 @@ class Search extends Component {
         <div className="title">热门搜索</div>
         <ul>
           {
-            list.map((v, i) => (<li key={i} onClick={this.changeSearch.bind(this, v)}>
+            list.map((v, i) => (<li key={i} onClick={this.changeSearch.bind(this, v ,true)}>
               {v}
             </li>))
           }
@@ -62,10 +74,11 @@ class Search extends Component {
       </div>
       {/*历史搜索*/}
       <div className="most_search">
-        <div className="title">历史搜索 <img src={require('../assets/image/delete.png')} alt=""/></div>
+        <div className="title">历史搜索 <img onClick={this.clearSearch} src={require('../assets/image/delete.png')} alt=""/>
+        </div>
         <ul>
           {
-            this.props.searchList.map((v, i) => (<li key={i} onClick={this.changeSearch.bind(this, v)}>
+            this.props.searchList.map((v, i) => (<li key={i} onClick={this.changeSearch.bind(this, v ,false)}>
               {v}
             </li>))
           }
