@@ -13,19 +13,24 @@ function throttle() {
   }, 100);
 }
 
+let pathname = null;
+
 @connect(state=>({pathname:state.router.location.pathname}))
 class GoToTop extends Component {
   constructor(props) {
     super(props);
     this.state = {
       show: this.props.site > 200,
-      pathname:this.props.pathname
     };
+    pathname = this.props.pathname
   }
 
-  componentWillReceiveProps({pathname}){
+  componentWillReceiveProps({path}){
     // 路由发生变化
-    if(pathname!==this.state.pathname) this.props.setSite(document.querySelector('.container').scrollTop);
+    if(path!==pathname){
+      pathname = path; // 防止触发两次 todo ?为什么会触发两次
+      this.props.setSite(document.querySelector('.container').scrollTop);
+    }
   }
 
   componentWillUnmount() {
@@ -36,8 +41,8 @@ class GoToTop extends Component {
     let time = setTimeout(() => {
       clearTimeout(time)
       document.querySelector('.container').scrollTop = this.props.site;
-    }, 100);
-    document.querySelector('.container').addEventListener("scroll", throttle.bind(this), false);
+      document.querySelector('.container').addEventListener("scroll", throttle.bind(this), false);
+    }, 400);
   }
 
   goTop() {
