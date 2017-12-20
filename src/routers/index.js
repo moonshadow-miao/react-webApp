@@ -56,8 +56,7 @@ const firstChild = props => {
 };
 
 const animate = (Component) => ({match, ...rest}) => (
-  <ReactCSSTransitionGroup transitionName="transitionWrapper" component={firstChild} transitionEnterTimeout={400}
-                           transitionLeaveTimeout={400}>{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
+  <ReactCSSTransitionGroup transitionName="transitionWrapper" component={firstChild} transitionEnterTimeout={400} transitionLeaveTimeout={400}>{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
 
 class Router extends Component {
   render() {

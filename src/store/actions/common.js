@@ -26,3 +26,8 @@ export function storeCityId(id) {
   return  { type:actions.STORE_CURRENT_CITY,payload:id}
 }
 
+// 存储当前搜索历史
+export function storeSearchList(list) {
+  return  { type:actions.STORE_SEARCH_LIST,payload:list}
+}
+

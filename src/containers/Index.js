@@ -78,10 +78,12 @@ class Index extends Component {
               <img src={require('../assets/image/my.png')} alt=""/>
             </div>
           </Link>
-          <div className="search">
-            <Icon type='search' size='lg'/>
-            <span> 输入区域，小区搜索房源</span>
-          </div>
+          <Link to='/search'>
+            <div className="search">
+              <Icon type='search' size='lg'/>
+              <span> 输入区域，小区搜索房源</span>
+            </div>
+          </Link>
         </div>
 
         {/*分类导航和广告部分*/}

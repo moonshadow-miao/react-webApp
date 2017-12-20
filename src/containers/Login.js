@@ -3,72 +3,82 @@ import '../assets/css/login.less'
 import {Modal} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import asyncComponent from "../utils/Bundlle";
+
 const Agreement = asyncComponent(() => import("../components/login/Agreement"));
 
 const HeaderNav = window.common.HeaderNav;
+
 class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      formData:{
-        active:'1' ,
+      formData: {
+        active: '1',
       },
-      modal:false
+      modal: false
     };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     document.body.className = 'loginContainer'
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     document.body.className = ''
   }
 
-  changeTab(type){
+  changeTab(type) {
     this.setState({
-      formData: Object.assign(this.state.formData,{active:type})
+      formData: Object.assign(this.state.formData, {active: type})
     })
   }
 
-  showPop = (e)=>{
+  showPop = (e) => {
     e.preventDefault()
     this.setState({
-      modal:true
+      modal: true
     })
   }
 
-  hidePop = (e)=>{
+  hidePop = (e) => {
     e.preventDefault()
     this.setState({
-      modal:false
+      modal: false
     })
   }
 
   render() {
     return (
-      <div className='login container' style={{zIndex:'100',backgroundColor:'#fff'}}>
+      <div className='login container' style={{zIndex: '100', backgroundColor: '#fff'}}>
         <div className="top">
           <HeaderNav/>
           <div className="logo">
             <img src='http://localhost:3030/image/login_logo.png' alt=""/>
-            <div className="wave"><div></div></div>
-            <div className="wave"><div></div></div>
-            <div className="wave"><div></div></div>
+            <div className="wave">
+              <div></div>
+            </div>
+            <div className="wave">
+              <div></div>
+            </div>
+            <div className="wave">
+              <div></div>
+            </div>
           </div>
         </div>
         <ul className="tab">
-          <li className = {this.state.formData.active === '1' ? "active tab_sub":"tab_sub"} onClick={this.changeTab.bind(this,'1')}>快速登录</li>
-          <li className = {this.state.formData.active === '2'? "active tab_sub":"tab_sub"} onClick={this.changeTab.bind(this,'2')} >账号登录</li>
+          <li className={this.state.formData.active === '1' ? "active tab_sub" : "tab_sub"}
+              onClick={this.changeTab.bind(this, '1')}>快速登录
+          </li>
+          <li className={this.state.formData.active === '2' ? "active tab_sub" : "tab_sub"}
+              onClick={this.changeTab.bind(this, '2')}>账号登录
+          </li>
         </ul>
         <div className="form">
-          <div className = {this.state.formData.active === '1' ? "":"hide"}>
+          <div className={this.state.formData.active === '1' ? "" : "hide"}>
             <div className="input">
               <em className='icon-envelope'></em>
               <input type="text" placeholder='请输入邮箱'/>
-              <Link to="/sdfaf">
-                <span>获取验证码</span>
-              </Link>
+              <span>获取验证码</span>
             </div>
             <div className="input">
               <em className='icon-key'></em>
@@ -76,7 +86,7 @@ class Login extends Component {
             </div>
             <div className="tip"><a href="http://www.benpig.com">查看收件箱(收不到验证码？请留意垃圾箱)</a></div>
           </div>
-          <div className = {this.state.formData.active === '2' ? "":"hide"}>
+          <div className={this.state.formData.active === '2' ? "" : "hide"}>
             <div className="input">
               <em className='icon-envelope'></em>
               <input type="text" placeholder='请输入邮箱'/>
@@ -91,10 +101,7 @@ class Login extends Component {
             </div>
           </div>
           <div className="load">
-            <Link to='/404'>
-              <button type="submit" className="login_btn">登录</button>
-            </Link>
-
+            <button type="submit" className="login_btn">登录</button>
           </div>
         </div>
         <div className="agreement">
@@ -104,7 +111,7 @@ class Login extends Component {
           </span>
         </div>
         <Modal visible={this.state.modal} transparent onClose={this.hidePop} closable>
-          <Agreement />
+          <Agreement/>
         </Modal>
       </div>
     );
