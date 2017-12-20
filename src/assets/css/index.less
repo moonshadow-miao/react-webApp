@@ -1,17 +1,20 @@
-.index{
+.index {
   background-color: #f0f0f0;
   overflow-x: hidden;
 }
+
 .title-text {
   font-size: .34rem;
   font-weight: 700;
 }
+
 .text-over {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.text-grey{
+
+.text-grey {
   font-size: .24rem;
   color: #9b9b9b;
 }
@@ -21,37 +24,37 @@
   width: 100%;
   height: 5.15rem;
   position: relative;
-  img{
+  img {
     width: 100%;
     height: 100%;
   }
-  .city_select{
+  .city_select {
     position: absolute;
     top: .35rem;
     padding-left: .2rem;
-    .cities{
+    .cities {
       color: #fff;
       margin-left: -.22rem;
       text-align: center;
       line-height: .66rem;
       width: 1rem;
-      background-color: rgba(0,0,0,0.5);
+      background-color: rgba(0, 0, 0, 0.5);
     }
-    span{
+    span {
       position: relative;
       padding-right: 0.4rem;
       color: #fff;
-      &::before{
+      &::before {
         content: '';
         position: absolute;
         border: .12rem solid transparent;
         border-top: .16rem solid #fff;
-        right:0;
+        right: 0;
         top: .08rem;
       }
     }
   }
-  .search{
+  .search {
     background-color: #fff;
     margin: 0 9%;
     border-radius: 2px;
@@ -61,18 +64,18 @@
     height: .82rem;
     line-height: .82rem;
     text-align: center;
-    span{
+    span {
       vertical-align: super;
       color: grey;
     }
   }
-  .login{
+  .login {
     display: inline-block;
     padding: .3rem;
     position: absolute;
     top: .1rem;
     right: 0;
-    img{
+    img {
       width: .33rem;
       height: .4rem;
     }
@@ -80,7 +83,7 @@
 }
 
 // 分类导航和广告部分
-.nav{
+.nav {
   background-color: #fff;
   width: 100%;
   height: 1.88rem;
@@ -88,33 +91,34 @@
   overflow: hidden;
   display: flex;
   margin-bottom: .2rem;
-  li{
+  li {
     flex: 1;
     height: 100%;
     text-align: center;
-      img{
-        height: 100%;
-      }
+    img {
+      height: 100%;
+    }
   }
 }
-.poster{
+
+.poster {
   padding: .2rem .3rem;
   background-color: #fff;
-  img{
+  img {
     width: 100%;
   }
 }
 
 // 推荐房源轮播部分
-.recommend_list{
+.recommend_list {
   background-color: #fff;
   padding-bottom: .4rem;
   margin-bottom: .2rem;
-  .title{
+  .title {
     height: 1.18rem;
     line-height: 1.18rem;
     padding: 0 .3rem;
-    h3{
+    h3 {
       font-size: .34rem;
       font-weight: 700;
       color: #3a3b3c;
@@ -123,33 +127,35 @@
       width: 0.36rem;
       height: 0.45rem;
     }
-    span{
+    span {
       vertical-align: super;
     }
   }
-  .rooms{
+  .rooms {
     width: 100%;
     overflow-x: scroll;
-    &::-webkit-scrollbar {display:none}
+    &::-webkit-scrollbar {
+      display: none
+    }
   }
-  .room_list{
+  .room_list {
     width: 375%;
-    .room{
+    .room {
       width: 4rem;
       white-space: nowrap;
       display: inline-block;
-      margin:0 .3rem;
-      img{
+      margin: 0 .3rem;
+      img {
         width: 100%;
         height: 3rem;
       }
-      .room_name{
+      .room_name {
         .text-over;
         padding-top: .4rem;
         .title-text;
         color: #5a5c5d;
       }
-      .price{
+      .price {
         .title-text;
         padding-top: .3rem;
         color: #e8323f;
@@ -159,10 +165,10 @@
 }
 
 // 推荐好房部分
-.goodRoom{
+.goodRoom {
   padding-bottom: 1.24rem;
   background-color: #fff;
-  .title{
+  .title {
     .title-text;
     height: 1.18rem;
     line-height: 1.18rem;
@@ -170,50 +176,88 @@
     padding: 0 .3rem;
   }
 }
-.text-grey{
 
-}
-.goodRoom_list{
+.goodRoom_list {
   border-bottom: 1px solid #f0f0f0;
   padding: .3rem;
-  .room_left{
+  .room_left {
     margin-right: .2rem;
-    .img{
+    .img {
+      position: relative;
+    }
+    .pics {
+      width: .6rem;
+      background-color: #ffa900;
+      position: absolute;
+      top: 0;
+      right: 0;
+      border-top-right-radius: 2px;
+      border-bottom-left-radius: 2px;
+      text-align: center;
+      span {
+        font-size: .18rem;
+        color: #fff;
+        line-height: .18rem;
+      }
+    }
+    img {
       width: 2.86rem;
       height: 2.16rem;
+      border-radius: 2px;
     }
-    .star{
+    .star_bg {
       margin-top: .2rem;
+      height: .28rem;
+      background: url("../image/star.png") no-repeat top left/1.85rem .56rem;
+      position: relative;
+      .star {
+        position: relative;
+        height: .28rem;
+        width: 1.15rem;
+        overflow: hidden;
+      }
+      img {
+        position: absolute;
+        top: -.28rem;
+        height: .56rem;
+        width: 1.85rem;
+      }
+      span{
+        position: absolute;
+        right: 0;
+        top: 0;
+        .text-grey;
+      }
     }
   }
-  .room_right{
+  .room_right {
     width: 3.8rem;
-    .name{
+    .name {
       .title-text;
       color: #5a5c5d;
       line-height: .44rem;
       .text-over;
     }
-    .price{
+    .price {
       .title-text;
       color: #e8323f;
       height: .54rem;
       line-height: .54rem;
-      img{
+      img {
         margin-left: .2rem;
         width: .77rem;
         height: .31rem;
       }
     }
-    .info{
+    .info {
       .text-over;
     }
-    .site{
+    .site {
       line-height: .44rem;
       .text-over;
     }
-    .category{
-      span{
+    .category {
+      span {
         font-size: .24rem;
         line-height: .36rem;
         margin-right: .1rem;

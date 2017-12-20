@@ -47,7 +47,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className='login container'>
+      <div className='login container' style={{zIndex:'100',backgroundColor:'#fff'}}>
         <div className="top">
           <HeaderNav/>
           <div className="logo">
@@ -66,7 +66,9 @@ class Login extends Component {
             <div className="input">
               <em className='icon-envelope'></em>
               <input type="text" placeholder='请输入邮箱'/>
-              <span>获取验证码</span>
+              <Link to="/sdfaf">
+                <span>获取验证码</span>
+              </Link>
             </div>
             <div className="input">
               <em className='icon-key'></em>
@@ -89,7 +91,10 @@ class Login extends Component {
             </div>
           </div>
           <div className="load">
-            <button type="submit" className="login_btn">登录</button>
+            <Link to='/404'>
+              <button type="submit" className="login_btn">登录</button>
+            </Link>
+
           </div>
         </div>
         <div className="agreement">

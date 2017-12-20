@@ -134,10 +134,17 @@ const GoodRooms = (props) => {
             <div className="room clearfix">
               <div className="room_left fl">
                 <div className="img">
-                  <img src="" alt=""/>
+                  <img src={RES_URL + 'image/room.png'} alt=""/>
+                  <div className="pics">
+                    <span>实拍</span>
+                    <span>13图</span>
+                  </div>
                 </div>
-                <div className="star">
-
+                <div className="star_bg">
+                  <div className="star">
+                    <img src={require('../../assets/image/star.png')} alt=""/>
+                  </div>
+                  <span>4.7分</span>
                 </div>
               </div>
               <div className="room_right fl">

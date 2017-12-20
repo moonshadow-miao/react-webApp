@@ -40,7 +40,7 @@ class GoToTop extends Component {
   render() {
     return (
       <div className={this.state.show ? 'goTop' : 'goTop hide'} onClick={this.goTop}>
-        <img src="http://localhost:3030/image/top.png" alt="暂无图片"/>
+        <img src={RES_URL + "image/top.png"} alt="暂无图片"/>
       </div>
     )
   }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import createHistory from 'history/createBrowserHistory'
-import {Route} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import {ConnectedRouter} from 'react-router-redux'
 import asyncComponent from '../utils/Bundlle'
 import {Modal} from 'antd-mobile';
@@ -10,10 +10,12 @@ import {getIndexImg} from '../store/actions/indexList'
 
 const alert = Modal.alert;
 
-const Index = asyncComponent(() => import("../containers/Index"),  {storeCities,getIndexImg,component:'index'});
+const Index = asyncComponent(() => import("../containers/Index"), {storeCities, getIndexImg, component: 'index'});
 const Login = asyncComponent(() => import("../containers/Login"));
 const ForgetPwd = asyncComponent(() => import("../containers/ForgetPwd"));
-const Register = asyncComponent(() => import("../containers//Register"));
+const Register = asyncComponent(() => import("../containers/Register"));
+const Search = asyncComponent(() => import("../containers/Search"));
+const Miss = asyncComponent(() => import("../containers/Miss"));
 
 const history = createHistory({
   getUserConfirmation: (message, callback) => {
@@ -23,7 +25,11 @@ const history = createHistory({
         {text: '确认', onPress: () => resolve(true)},
       ]);
     });
-    res.then(() => {callback(true)}).catch(() => {callback(false)})
+    res.then(() => {
+      callback(true)
+    }).catch(() => {
+      callback(false)
+    })
   }
 });
 
@@ -34,7 +40,7 @@ history.block((location, action) => {
   if (location.pathname === '/forget-pwd' && action === 'POP') {
     return '确认离开当前页面?'
   }
-  if (location.pathname === '/login' && action === 'POP') {
+  if (location.pathname === '/login' && action === 'POP' && document.querySelector('.miss').style.display === 'none') {
     return '确认离开当前页面?'
   }
 })
@@ -50,7 +56,8 @@ const firstChild = props => {
 };
 
 const animate = (Component) => ({match, ...rest}) => (
-  <ReactCSSTransitionGroup transitionName="transitionWrapper" component={firstChild} transitionEnterTimeout={400} transitionLeaveTimeout={400}>{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
+  <ReactCSSTransitionGroup transitionName="transitionWrapper" component={firstChild} transitionEnterTimeout={400}
+                           transitionLeaveTimeout={400}>{match && <Component {...rest} />}</ReactCSSTransitionGroup>)
 
 class Router extends Component {
   render() {
@@ -61,6 +68,8 @@ class Router extends Component {
           <Route exact path="/login" children={animate(Login)}/>
           <Route exact path="/forget-pwd" children={animate(ForgetPwd)}/>
           <Route exact path="/register" children={animate(Register)}/>
+          <Route exact path="/search" children={animate(Search)}/>
+          <Route component={Miss}/>
         </div>
       </ConnectedRouter>);
   }
