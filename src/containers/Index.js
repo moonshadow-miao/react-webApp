@@ -80,7 +80,7 @@ class Index extends Component {
           </Link>
           <Link to='/search'>
             <div className="search">
-              <Icon type='search' size='lg'/>
+              <Icon type='search' size='xs'/>
               <span> 输入区域，小区搜索房源</span>
             </div>
           </Link>

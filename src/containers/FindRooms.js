@@ -9,9 +9,12 @@ import asyncComponent from "../utils/Bundlle";
 
 const GoodRooms = asyncComponent(() => import("../components/index/GoodRooms"));
 const HeaderSearch = asyncComponent(() => import("../components/findRooms/HeaderSearch"));
+const Filter = asyncComponent(() => import("../components/findRooms/Filter"));
 
 const GoToTop = window.common.GoToTop,
   FooterTip = window.common.FooterTip;
+
+
 
 @connect(state => ({
   findSite: state.reducers.index.findSite,
@@ -20,15 +23,18 @@ const GoToTop = window.common.GoToTop,
 }), dispatch => bindActionCreators({setFindSite, storeCity}, dispatch))
 class FindRooms extends Component {
   constructor(props) {
-    super(props)
-    this.state = {}
+    super(props);
+    this.state = {
+
+    }
   }
 
   render() {
     return (<div className="container findRooms">
       <GoToTop site={this.props.findSite} setSite={this.props.setFindSite} container='.findRooms'/>
       <FooterTip/>
-      <HeaderSearch cities={this.props.cities}  currentCity={this.props.currentCity} storeCity = {this.props.storeCity} />
+      <HeaderSearch cities={this.props.cities} currentCity={this.props.currentCity} storeCity={this.props.storeCity}/>
+      <Filter/>
       <GoodRooms lists={[]}/>
     </div>)
   }

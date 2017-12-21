@@ -11,10 +11,10 @@ const FooterTip = () => {
       footer = node;
     }}>
       <div className='close fl' onClick={close}>
-        <Icon type='cross-circle' size='lg'/>
+        <Icon type='cross-circle' size='sm'/>
       </div>
       <div className="logo fl">
-        <img src="http://localhost:3030/image/logo.png" alt=""/>
+        <img src={RES_URL + "image/logo.png"} alt=""/>
       </div>
       <div className="text fl">
         <h3>租房就找巴乐兔</h3>

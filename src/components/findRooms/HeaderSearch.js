@@ -9,7 +9,6 @@ HeaderSearch.prototypes = {
   storeCity: PropTypes.func.isRequired
 };
 
-
 export default function HeaderSearch(prop) {
   let textInput = null
 
@@ -38,7 +37,7 @@ export default function HeaderSearch(prop) {
     </div>
     <Link to='/search'>
       <div className="searchBox fl">
-        <Icon size='lg' type='search'/>
+        <Icon size='xs' type='search'/>
         <span className='input'>输入区域,小区搜索房源</span>
       </div>
     </Link>
