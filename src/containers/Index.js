@@ -5,11 +5,11 @@ import {Icon} from 'antd-mobile';
 import '../assets/css/index.less'
 import asyncComponent from "../utils/Bundlle";
 import {connect} from 'react-redux'
-import {storeCityId} from '../store/actions/common'
+import {storeCity} from '../store/actions/common'
 import {setIndexSite} from '../store/actions/indexList'
 
 function mapDispatchToProps(dispatch) {
-  return {actions: bindActionCreators({storeCityId, setIndexSite}, dispatch)};
+  return {actions: bindActionCreators({storeCity, setIndexSite}, dispatch)};
 }
 
 const RecommendList = asyncComponent(() => import("../components/index/RecommendList"));
@@ -20,13 +20,13 @@ const GoToTop = window.common.GoToTop,
 @connect(state => ({
   ...state.reducers.index,
   cities: state.reducers.common.cities,
-  currentCityId: state.reducers.common.currentCityId
+  currentCity: state.reducers.common.currentCity
 }), mapDispatchToProps)
 class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: this.props.cities.find(v => v.city_id === this.props.currentCityId).city_name,
+      city: this.props.currentCity.city_name,
       cityControl: "cities hide",
     };
   }
@@ -48,17 +48,17 @@ class Index extends Component {
     })
   }
 
-  changeCity(name, id) {
-    this.props.actions.storeCityId(id);
+  changeCity(city) {
+    this.props.actions.storeCity(city);
     this.setState({
-      city: name
+      city: city.name
     })
   }
 
   render() {
     return (
       <div onClick={this.hideCities} className='index container'>
-        <GoToTop site={this.props.indexSite} setSite={this.props.actions.setIndexSite} />
+        <GoToTop site={this.props.indexSite} setSite={this.props.actions.setIndexSite} container='.index' />
         <FooterTip/>
         {/*banner部分*/}
         <div className="banner">
@@ -68,7 +68,7 @@ class Index extends Component {
             <div className={this.state.cityControl}>
               {
                 this.props.cities.map((v, i) => (
-                  <p key={i} onClick={this.changeCity.bind(this, v.city_name, v.city_id)}>{v.city_name}</p>
+                  <p key={i} onClick={this.changeCity.bind(this, v)}>{v.city_name}</p>
                 ))
               }
             </div>

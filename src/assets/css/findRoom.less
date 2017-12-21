@@ -1,0 +1,75 @@
+.search {
+  height: .88rem;
+  background-color: #ee3943;
+  position: relative;
+  .img {
+    padding: .22rem .3rem .15rem;
+    img {
+      width: .4rem;
+      height: .4rem;
+    }
+  }
+  .city_select {
+    margin-top: .22rem;
+    .cities {
+      color: #fff;
+      margin-left: -.22rem;
+      text-align: center;
+      line-height: .66rem;
+      width: 1rem;
+      background-color: rgba(0, 0, 0, 0.7);
+      margin-top: .18rem;
+      position: absolute;
+      z-index: 10;
+      &::before {
+        left: .3rem;
+        content: '';
+        position: absolute;
+        border: .18rem solid transparent;
+        border-bottom-color: rgba(0, 0, 0, 0.7);
+        top: -.36rem;
+      }
+    }
+    span {
+      position: relative;
+      padding-right: 0.4rem;
+      color: #fff;
+      &::before {
+        content: '';
+        position: absolute;
+        border: .12rem solid transparent;
+        border-top: .16rem solid #fff;
+        right: 0;
+        top: .08rem;
+      }
+    }
+  }
+  .searchBox {
+    .am-icon-lg {
+      height: .6rem;
+    }
+    .input {
+      position: absolute;
+      height: .44rem;
+      top: .12rem;
+      padding-left: .1rem;
+    }
+    width: 4.31rem;
+    height: .6rem;
+    background-color: #fff;
+    border-radius: 5px;
+    line-height: .6rem;
+    font-size: .24rem;
+    color: #cbcbcb;
+    margin-top: .12rem;
+    margin-left: .24rem;
+    padding-left: .3rem;
+  }
+  .login{
+    padding: .22rem .3rem;
+    img{
+      width: .33rem;
+      height: .4rem;
+    }
+  }
+}

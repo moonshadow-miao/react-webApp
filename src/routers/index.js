@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Route, Redirect} from 'react-router-dom'
 import {ConnectedRouter} from 'react-router-redux'
+import asyncComponentWithConnect from '../utils/BundleWithConnnect'
 import asyncComponent from '../utils/Bundlle'
 
 import ReactCSSTransitionGroup from "react-addons-css-transition-group";
@@ -10,7 +11,7 @@ import {getIndexImg} from '../store/actions/indexList'
 
 
 
-const Index = asyncComponent(() => import("../containers/Index"), {storeCities, getIndexImg, component: 'index'});
+const Index = asyncComponentWithConnect(() => import("../containers/Index"), {storeCities, getIndexImg, component: 'index'});
 const Login = asyncComponent(() => import("../containers/Login"));
 const ForgetPwd = asyncComponent(() => import("../containers/ForgetPwd"));
 const Register = asyncComponent(() => import("../containers/Register"));

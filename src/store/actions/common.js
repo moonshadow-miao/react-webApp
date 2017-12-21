@@ -1,5 +1,6 @@
 import * as actions from '../actionsType'
 import {Api_getCities} from "../../services/api";
+import {setSession} from '../../utils/index'
 
 // 开启loading
 export function loading() {
@@ -15,15 +16,17 @@ export function loaded() {
 export function storeCities() {
   return (dispatch)=>{
     Api_getCities().then(res=>{
+      setSession('cities',res.cities);
       dispatch({ type:actions.STORE_INDEX_CITIES, payload: res.cities});
-      dispatch(storeCityId(res.cities[0].city_id));
+      dispatch(storeCity(res.cities[0]));
     });
   }
 }
 
 // 存储当前选择的城市
-export function storeCityId(id) {
-  return  { type:actions.STORE_CURRENT_CITY,payload:id}
+export function storeCity(city) {
+  setSession('currentCity',city);
+  return  { type:actions.STORE_CURRENT_CITY,payload:city}
 }
 
 // 存储当前搜索历史

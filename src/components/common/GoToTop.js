@@ -8,7 +8,7 @@ function throttle() {
   clearTimeout(timer);
   timer = setTimeout(() => {
     this.setState({
-      show: document.querySelector('.container').scrollTop > 200
+      show: document.querySelector(this.props.container).scrollTop > 200
     });
   }, 100);
 }
@@ -26,7 +26,7 @@ class GoToTop extends Component {
   }
 
   componentWillReceiveProps({path}){
-    // 路由发生变化
+    // 判断路由发生变化
     if(path!==pathname){
       pathname = path; // 防止触发两次 todo ?为什么会触发两次
       this.props.setSite(document.querySelector('.container').scrollTop);
@@ -34,19 +34,19 @@ class GoToTop extends Component {
   }
 
   componentWillUnmount() {
-    document.querySelector('.container').removeEventListener("scroll", throttle.bind(this), false);
+    document.querySelector(this.props.container).removeEventListener("scroll", throttle.bind(this), false);
   }
 
   componentDidMount() {
     let time = setTimeout(() => {
       clearTimeout(time)
-      document.querySelector('.container').scrollTop = this.props.site;
-      document.querySelector('.container').addEventListener("scroll", throttle.bind(this), false);
-    }, 400);
+      document.querySelector(this.props.container).scrollTop = this.props.site;
+      document.querySelector(this.props.container).addEventListener("scroll", throttle.bind(this), false);
+    }, 200);
   }
 
   goTop() {
-    document.querySelector('.container').scrollTop = 0
+    document.querySelector(this.props.container).scrollTop = 0
   }
 
   render() {
@@ -60,6 +60,7 @@ class GoToTop extends Component {
 
 GoToTop.propTypes = {
   setSite: PropTypes.func,
-  site: PropTypes.number
+  site: PropTypes.number,
+  container: PropTypes.string.isRequired
 }
 export default GoToTop
