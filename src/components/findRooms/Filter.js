@@ -59,7 +59,7 @@ class Filter extends Component {
         <div className={"tab-wrapper" + (this.state.isFixed ? ' fixed' : '')} onClick={this.showFilter}>
           {
             tabs.map((v, i) => (
-              <div className="tab" key={i} onClick={this.showPanel.bind(this, i + 1)}>
+              <div className={(this.state.showTabs === (i+1) ?'active' : '') + ' tab'} key={i} onClick={this.showPanel.bind(this, i + 1)}>
                 <span className="tab-text">{v}</span>
                 <span className="icon-angle-down"> </span>
               </div>
