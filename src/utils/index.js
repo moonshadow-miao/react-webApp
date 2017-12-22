@@ -20,7 +20,7 @@ export function request_param(paramObj) {
 
 // 读取本地存储
 export function getSession(key) {
-  return JSON.parse(window.sessionStorage.getItem(key))
+  return window.sessionStorage.getItem(key) == null || window.sessionStorage.getItem(key) == 'undefined'  ? null :JSON.parse(window.sessionStorage.getItem(key))
 }
 
 // 设置本地存储

@@ -1,46 +1,175 @@
-.filter {
-  .fixed {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background-color: #fff;
-    z-index: 10;
+@import "mixin";
+
+.fixed {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 10;
+}
+
+.tab-wrapper {
+  display: flex;
+  height: .87rem;
+  line-height: .87rem;
+  border-bottom: 1px solid #f0f0f0;
+  .tab {
+    flex: 1;
+    text-align: center;
+    &.active {
+      color: red;
+    }
+    .arrow {
+      color: darkgray;
+    }
   }
-  .tab-wrapper {
-    display: flex;
-    height: .87rem;
-    line-height: .87rem;
-    border-bottom: 1px solid #f0f0f0;
-    .tab {
-      flex: 1;
+}
+
+.panels {
+  &.show_panel {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: block;
+  }
+  .panel {
+    background-color: #fff;
+    position: relative;
+    z-index: 11;
+  }
+  .position {
+    .subTabs {
+      display: flex;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .subTab {
       text-align: center;
-      &.active{
-        color: red;
+      flex: 1;
+      line-height: .9rem;
+      span {
+        &.active {
+          color: red;
+          display: inline-block;
+          height: .9rem;
+          border-bottom: .07rem solid red;
+        }
+      }
+    }
+    .region {
+      height: 6.8rem;
+    }
+    .subPanel {
+      height: 100%;
+      display: flex;
+      .left {
+        flex: 1;
+        background-color: #f0f0f0;
+        overflow: scroll;
+        .active {
+          background-color: #fff;
+          color: red;
+        }
+      }
+      .right {
+        flex: 1;
+        background-color: #fff;
+        overflow: scroll;
+        li {
+          margin-left: .3rem;
+          border-bottom: 1px solid #ececec;
+          &.active {
+            color: red;
+          }
+        }
+      }
+      li {
+        padding-left: .3rem;
+        height: .9rem;
+        line-height: .9rem;
+        .text-over;
+        color: #5a5c5d;
+        font-size: .28rem;
       }
     }
   }
-  .panels {
-    &.show_panel {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      z-index: 10;
-      display: block;
-    }
-    .panel{
-      background-color: #fff;
-      height: 200px;
-      position: relative;
-      z-index: 11;
-    }
-    .mask {
-      position: absolute;
-      background-color: #000;
-      opacity: .5;
-      top: 0;
-      width: 100%;
-      height: 100%;
+  .layout {
+    .region{
+      height: 5.4rem;
     }
   }
-
+  .rent {
+    .options {
+      padding: .4rem .3rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .option {
+      .card;
+      .text-over;
+      &.active {
+        background-color: #eff6fa;
+        color: #2f92ca;
+      }
+    }
+    .custom {
+      padding: .2rem .3rem;
+      height: .9rem;
+      line-height: .5rem;
+      font-size: .26rem;
+      color: #a3a2a2;
+      span{
+        font-size: .28rem;
+        color: #5a5c5d;
+        margin-right: .2rem;
+      }
+      .sure{
+        .card;
+        margin-bottom: 0;
+        margin-right: 0;
+        height: .5rem;
+        width: 1.1rem;
+        line-height: .5rem;
+        font-size: .24rem;
+        &.active{
+          color: #fff;
+          background-color: #e8323f;
+        }
+      }
+    }
+    .custom_price{
+      padding: .2rem .8rem .5rem;
+      color: #ee3943;
+      font-size: .28rem;
+    }
+    .ruler{
+      padding: .45rem .5rem .7rem;
+    }
+  }
+  .filer_footer{
+    height: 0.9rem;
+    line-height: .5rem;
+    background-color: #fff;
+    padding: .2rem .3rem;
+    border-top: 1px solid #ececec;
+    button{
+      font-size: .24rem;
+      color: #fff;
+      padding: 0 .34rem;
+      height: 100%;
+      line-height: .5rem;
+      border-radius: 2px;
+      background-color: #ee3943;
+      float: right;
+    }
+  }
+  .mask {
+    position: absolute;
+    background-color: #000;
+    opacity: .5;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
 }

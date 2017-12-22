@@ -15,16 +15,16 @@ export function loaded() {
 // 存储首页城市列表
 export function storeCities() {
   return (dispatch)=>{
-    Api_getCities().then(res=>{
-      setSession('cities',res.cities);
-      dispatch({ type:actions.STORE_INDEX_CITIES, payload: res.cities});
-      dispatch(storeCity(res.cities[0]));
+    Api_getCities().then(({cities=[]})=>{
+      setSession('cities',cities);
+      dispatch({ type:actions.STORE_INDEX_CITIES, payload: cities});
+      dispatch(storeCity(cities[0]));
     });
   }
 }
 
 // 存储当前选择的城市
-export function storeCity(city) {
+export function storeCity(city = {}) {
   setSession('currentCity',city);
   return  { type:actions.STORE_CURRENT_CITY,payload:city}
 }
