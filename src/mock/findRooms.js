@@ -6,7 +6,8 @@ export const search = {
       {
         "name": "浦东",
         "pinyin": "pudong",
-        "rightList": [{
+        "rightList": [
+          {
           "id": 130,
           "name": "北蔡",
           "level": 3,
@@ -307,7 +308,8 @@ export const search = {
       }, {
         "name": "宝山",
         "pinyin": "baoshan",
-        "rightList": [{
+        "rightList": [
+          {
           "id": 23,
           "name": "大场",
           "level": 3,
@@ -455,7 +457,8 @@ export const search = {
       }, {
         "name": "闵行",
         "pinyin": "minhang",
-        "rightList": [{
+        "rightList": [
+          {
           "id": 114,
           "name": "春申",
           "level": 3,

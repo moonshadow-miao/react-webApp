@@ -1,14 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import PropTypes from 'prop-types';
+import {bindActionCreators} from 'redux'
 import {Range} from 'antd-mobile'
-
+import {updateFilterOptions} from '../../store/actions/common'
 import '../../assets/css/filter.less'
-
-
 import {search} from "../../mock/findRooms";
 
-let tabs = ['位置', '租金', '户型', '更多'];
 
 let timer = null;
 const rem = parseInt(document.querySelector('html').style.fontSize);
@@ -32,9 +29,10 @@ const style_slider = {
   background: '#fff',
   border: 'none'
 }
-const style_line = {height: '.06rem'}
+const style_line = {height: '.06rem'};
+const initTabs = ['位置','租金','户型','更多'];
 
-@connect()
+@connect(state=>({ filterOptions: state.reducers.common.filterOptions}), dispatch => bindActionCreators({updateFilterOptions}, dispatch))
 class Filter extends Component {
   constructor(props) {
     super(props);
@@ -86,12 +84,15 @@ class Filter extends Component {
     this.setState({position: type});
   }
 
-  changeRegionList(list, index) {
+  changeRegionList(list,name,index) {
     this.setState({sub_region: list, region_index: index, sub_region_index: -1});
+    index === -1 ? this.props.updateFilterOptions({index:0,value:'位置',id:''}):
+    this.props.updateFilterOptions({index:0,value:name,id:''})
   }
 
   selectRegion(region, index) {
-    this.setState({sub_region_index: index})
+    this.setState({sub_region_index: index});
+    this.props.updateFilterOptions({index:0,value:region.name,id:region.id})
   }
 
   selectRent(rent, index) {
@@ -131,17 +132,21 @@ class Filter extends Component {
 
   selectCustomPrice = () => {
 
-  }
+  };
+
+  clearSpecial= ()=>{
+    this.setState({special: []})
+  };
 
   render() {
     return (
       <div className={'filter'}>
         <div className={"tab-wrapper" + (this.state.isFixed ? ' fixed' : '')}>
           {
-            tabs.map((v, i) => (
-              <div className={(this.state.showTabs === (i + 1) ? 'active' : '') + ' tab'} key={i}
+            this.props.filterOptions.map((v, i) => (
+              <div className='tab' key={i}
                    onClick={this.showPanel.bind(this, i + 1)}>
-                <span className="tab-text">{v}</span>
+                <span className={"tab-text "+(this.state.showTabs === (i + 1) || this.props.filterOptions[i].value !== initTabs[i]? 'active' : '')}>{v.value}</span>
                 <span
                   className={this.state.showTabs === (i + 1) ? "icon-angle-up arrow" : "icon-angle-down arrow"}> </span>
               </div>
@@ -168,15 +173,15 @@ class Filter extends Component {
                       search.data.region.map((v, i) => (
                         <li key={'region' + i}
                             className={'sub_region ' + (this.state.region_index === i ? 'active' : '')}
-                            onClick={this.changeRegionList.bind(this, v.rightList, i)}>
+                            onClick={this.changeRegionList.bind(this, v.rightList,v.name,i)}>
                           {v.name}
                         </li>))
                     }
                   </ul>
                   <ul className="right">
-                    <li className={'sub_region ' + (this.state.sub_region_index === -1 ? 'active' : '')}
-                        onClick={this.selectRegion.bind(this, '', -1)}>全部
-                    </li>
+                    {
+                      this.state.sub_region.length ===0?null : <li className={'sub_region ' + (this.state.sub_region_index === -1 ? 'active' : '')} onClick={this.selectRegion.bind(this, '', -1)}>全部</li>
+                    }
                     {
                       this.state.sub_region.map((v, i) => (
                         <li key={'sub_region' + i} onClick={this.selectRegion.bind(this, v, i)}
@@ -201,9 +206,9 @@ class Filter extends Component {
                     }
                   </ul>
                   <ul className="right">
-                    <li className={'sub_region ' + (this.state.sub_region_index === -1 ? 'active' : '')}
-                        onClick={this.selectRegion.bind(this, '', -1)}>全部
-                    </li>
+                    {
+                      this.state.sub_region.length === 0 ? null:<li className={'sub_region ' + (this.state.sub_region_index === -1 ? 'active' : '')} onClick={this.selectRegion.bind(this, '', -1)}>全部</li>
+                    }
                     {
                       this.state.sub_region.map((v, i) => (
                         <li key={'sub_region' + i} onClick={this.selectRegion.bind(this, v, i)}
@@ -267,9 +272,9 @@ class Filter extends Component {
                     }
                   </ul>
                   <ul className="right">
-                    <li className={'sub_region ' + (this.state.sub_layout_index === -1 ? 'active' : '')}
-                        onClick={this.selectLayout.bind(this, '', -1)}>不限
-                    </li>
+                    {
+                      this.state.sub_layout.length === 0 ? null: <li className={'sub_region ' + (this.state.sub_layout_index === -1 ? 'active' : '')} onClick={this.selectLayout.bind(this, '', -1)}>不限</li>
+                    }
                     {
                       this.state.sub_layout.map((v, i) => (
                         <li key={'sub_layout' + i} onClick={this.selectLayout.bind(this, v, i)}
@@ -309,8 +314,8 @@ class Filter extends Component {
                       {
                         search.data.special.map((v, i) => (
                           <li key={'special' + i} onClick={this.selectSpecial.bind(this, v.id)}
-                              className={'sub_region ' + (this.state.special.indexOf(v.id) !== -1 ? 'active' : '')}>{v.name}
-                          <span> </span><input className='hide' type="checkbox"/>
+                              className={'sub_region ' + (this.state.special.indexOf(v.id) !== -1 ? 'active' : '')}>
+                            {v.name} <span className={'fr circle ' + (this.state.special.indexOf(v.id) !== -1 ? 'active' : '')}> </span>
                           </li>))
                       }
                     </div>
@@ -318,13 +323,13 @@ class Filter extends Component {
                 </div>
               </div>
               <div className={(this.state.moreType === '1' ? '' : 'hide') + ' filer_footer'}>
-                <span className='icon-trash'>清空</span>
+                <span className='icon-trash' onClick={this.clearSpecial}>清空</span>
                 <button>确认</button>
               </div>
             </div>
           </div>
 
-          <div className="mask" onClick={this.hidePanel}></div>
+          <div className="mask" onClick={this.hidePanel}> </div>
 
         </div>
       </div>

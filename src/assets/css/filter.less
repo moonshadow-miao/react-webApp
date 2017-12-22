@@ -16,7 +16,7 @@
   .tab {
     flex: 1;
     text-align: center;
-    &.active {
+    .tab-text.active {
       color: red;
     }
     .arrow {
@@ -162,6 +162,31 @@
       border-radius: 2px;
       background-color: #ee3943;
       float: right;
+    }
+  }
+  .more{
+    .circle{
+      width: .3rem;
+      height: .3rem;
+      margin-top: .3rem;
+      margin-right: .4rem;
+      border: 1px solid #c4c4c4;
+      border-radius: 50%;
+      padding: .01rem;
+      &.active{
+        border: 1px solid #ee3943;
+        position: relative;
+        &::before{
+          content: '';
+          position: absolute;
+          background-color: #ee3943;
+          height: 70%;
+          width: 70%;
+          border-radius: 50%;
+          top: .04rem;
+          left:.04rem;
+        }
+      }
     }
   }
   .mask {

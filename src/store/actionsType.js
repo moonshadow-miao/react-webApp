@@ -13,5 +13,6 @@ export const STORE_INDEX_CITIES = 'common/STORE_INDEX_CITIES';
 export const STORE_CURRENT_CITY = 'common/STORE_CURRENT_CITY';
 export const STORE_SEARCH_LIST = 'common/STORE_SEARCH_LIST';
 export const CLEAR_SEARCH_LIST = 'common/CLEAR_SEARCH_LIST';
+export const UPDATE_FILTER_OPTIONS = 'common/UPDATE_FILTER_OPTIONS';
 
 // 用户状态 user store

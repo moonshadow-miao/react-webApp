@@ -35,6 +35,11 @@ export function storeSearchList(item) {
 }
 
 // 清空当前搜索历史
-export function clearSearchList(list) {
+export function clearSearchList() {
   return  { type:actions.CLEAR_SEARCH_LIST}
+}
+
+// 存储找房页面的搜索条件
+export function updateFilterOptions(option) {
+  return  { type:actions.UPDATE_FILTER_OPTIONS,payload:option}
 }
