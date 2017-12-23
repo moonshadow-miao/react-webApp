@@ -7,7 +7,7 @@ const initState = {
   cities: getSession('cities') || [],       // 城市列表
   currentCity: getSession('currentCity') || {}, // 当前选择的城市信息(id,name)
   searchList: [],
-  filterOptions:getSession('filterOptions') || [{type:'0',value:'位置',id:'',index:0}, {value:'租金',id:'',index:1}, {value:'户型',id:'',index:2}, {value:'更多',id:'',index:3}]
+  filterOptions:getSession('filterOptions') || [{type:'0',value:'位置',id:'',index:0}, {value:'租金',id:'',index:1}, {value:'户型',id:'',index:2}, {value:'更多',id:'',index:3,special:[]}]
 };
 export default function list(state = initState, action) {
   switch (action.type) {
