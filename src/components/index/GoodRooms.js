@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom'
 import {Icon} from 'antd-mobile';
 import PropTypes from 'prop-types';
 import '../../assets/css/goodRoom.less'
@@ -133,7 +134,8 @@ const GoodRooms = (props) => {
       {
         lists.map((v, i) => (
           <div className="goodRoom_list" key={i}>
-            <div className="room clearfix">
+            <Link to="house-detail">
+              <div className="room clearfix">
               <div className="room_left fl">
                 <div className="img">
                   <img src={RES_URL + 'image/room.png'} alt=""/>
@@ -169,11 +171,12 @@ const GoodRooms = (props) => {
                 </div>
               </div>
             </div>
+            </Link>
           </div>))
       }
     </div>
   );
-}
+};
 GoodRooms.propTypes = {
   lists: PropTypes.array,
   title:PropTypes.string

@@ -3,6 +3,7 @@ export const GET_INDEX_BANNER = 'index/GET_INDEX_BANNER';
 export const GET_INDEX_POSTER = 'index/GET_INDEX_POSTER';
 export const SET_INDEX_SITE = 'index/SET_INDEX_SITE';
 export const SET_FIND_SITE = 'find/SET_FIND_SITE';
+export const SET_DETAIL_SITE = 'detail/SET_DETAIL_SITE';
 export const GET_INDEX_RECOMMEND_ROOM = 'index/GET_INDEX_RECOMMEND_ROOM';
 export const GET_INDEX_ROOM_LIST = 'index/GET_INDEX_ROOM_LIST';
 

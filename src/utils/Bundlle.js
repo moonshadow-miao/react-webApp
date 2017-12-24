@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-export default function asyncComponent(importComponent,actions,cb) {
+export default function asyncComponent(importComponent,cb) {
   class AsyncComponent extends Component {
     constructor(props) {
       super(props);
@@ -17,7 +17,7 @@ export default function asyncComponent(importComponent,actions,cb) {
 
     render() {
       const C = this.state.component;
-      return C ? <C {...this.props} /> : null;
+      return C ? <C {...this.props} callBack={cb} /> : null;
     }
   }
 

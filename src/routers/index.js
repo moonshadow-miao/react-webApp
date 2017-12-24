@@ -9,14 +9,13 @@ import history from './history'
 import {storeCities} from '../store/actions/common'
 import {getIndexImg} from '../store/actions/indexList'
 
-
-
 const Index = asyncComponentWithConnect(() => import("../containers/Index"), {storeCities, getIndexImg, component: 'index'});
 const Login = asyncComponent(() => import("../containers/Login"));
 const ForgetPwd = asyncComponent(() => import("../containers/ForgetPwd"));
 const Register = asyncComponent(() => import("../containers/Register"));
 const Search = asyncComponent(() => import("../containers/Search"));
 const FindRooms = asyncComponent(() => import("../containers/FindRooms"));
+const HouseDetail = asyncComponent(() => import("../containers/HouseDetail"));
 const Miss = asyncComponent(() => import("../containers/Miss"));
 
 
@@ -39,6 +38,7 @@ class Router extends Component {
           <Route exact path="/register" children={animate(Register)}/>
           <Route exact path="/search" children={animate(Search)}/>
           <Route exact path="/find-rooms" children={animate(FindRooms)}/>
+          <Route exact path="/house-detail" children={animate(HouseDetail)}/>
           <Route component={Miss}/>
         </div>
       </ConnectedRouter>);

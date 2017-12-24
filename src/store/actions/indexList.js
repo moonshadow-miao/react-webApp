@@ -21,4 +21,9 @@ export function setFindSite(site = 0) {
   return { type:actions.SET_FIND_SITE, payload: site }
 }
 
+// 存储找房页滚动的位置
+export function setDetailSite(site = 0) {
+  return { type:actions.SET_DETAIL_SITE, payload: site }
+}
+
 

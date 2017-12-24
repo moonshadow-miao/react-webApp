@@ -8,6 +8,7 @@ const index = {
   roomList: [],
   indexSite: 0 , // 记录首页位置
   findSite: 0 , // 记录找房页面位置
+  detailSite: 0 , // 记录房间详情页面位置
 };
 
 export default function list(state = index, action) {
@@ -20,6 +21,8 @@ export default function list(state = index, action) {
       return {...state, indexSite: action.payload};
     case actions.SET_FIND_SITE :
       return {...state, findSite: action.payload};
+    case actions.SET_DETAIL_SITE :
+      return {...state, detailSite: action.payload};
     default:
       return state
   }
