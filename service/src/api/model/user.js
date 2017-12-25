@@ -1,5 +1,5 @@
 import mongoose from './db.js';
-
+const nodemailer = require('nodemailer');
 let Schema = mongoose.Schema;
 
 let UserSchema = new Schema({
