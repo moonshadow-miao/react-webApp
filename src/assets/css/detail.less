@@ -1,4 +1,8 @@
 @import "mixin";
+.houseDetail{
+  padding-bottom: .4rem;
+}
+
 .sliders{
   position: relative;
   .back{
@@ -106,5 +110,178 @@
     padding: .4rem;
     width: 100%;
     line-height: .56rem;
+  }
+}
+
+.am-tabs {
+  height: auto;
+}
+
+.facilities{
+  padding: .4rem 0;
+  li{
+    float: left;
+    width: 20%;
+  }
+  img{
+    width: .72rem;
+    margin-bottom: .2rem;
+    height: .92rem;
+  }
+}
+
+h4{
+  font-size: .32rem;
+  color: #5a5c5d;
+  text-align: center;
+  line-height: 1.12rem;
+}
+
+.roommate{
+  .roomList{
+    max-height: 2.64rem;
+    overflow: hidden;
+    li{
+      border-top: 1px solid #e5e5e8;
+      padding: 0 20px;
+    }
+    span{
+      font-size: .28rem;
+      line-height: .88rem;
+      text-align: center;
+      &.active{
+        color: red;
+      }
+      &:nth-child(1){
+        width: 20%;
+      }
+      &:nth-child(2){
+        width: 50%;
+      }
+      &:nth-child(3){
+        width: 30%;
+      }
+    }
+  }
+  .comment{
+    padding: .3rem 0;
+    border-top: 1px solid #f0f0f0;
+    border-bottom: 1px solid #f0f0f0;
+    position: relative;
+    .star_bg {
+      margin-left: .7rem;
+      height: .28rem;
+      background: url("../image/star.png") no-repeat top left/1.85rem .56rem;
+      position: relative;
+      .star {
+        position: relative;
+        height: .28rem;
+        width: 1.15rem;
+        overflow: hidden;
+      }
+      img {
+        position: absolute;
+        top: -.28rem;
+        height: .56rem;
+        width: 1.85rem;
+      }
+      span{
+        position: absolute;
+        left: 2.2rem;
+        top: 0;
+        .text-grey;
+        &:before{
+          content: '';
+          position: absolute;
+          left: .8rem;
+          width: 2px;
+          height: .36rem;
+          background-color: #e5e5e8;
+        }
+      }
+    }
+    .comments{
+      position: absolute;
+      top: .22rem;
+      right: 2.1rem;
+      span{
+        padding-left: .2rem;
+        color: red;
+        font-size: .48rem;
+        vertical-align: sub;
+      }
+    }
+  }
+  .content{
+    padding: 0 .4rem;
+  }
+}
+
+.authentication{
+  display: flex;
+  padding-bottom: .3rem;
+  .auth{
+    flex: 1;
+    text-align: center;
+    span{
+      display: inline-block;
+      border-radius: 50%;
+      height: .5rem;
+      width: .5rem;
+      line-height: .5rem;
+      color: #fff;
+      background-color: #ee3843;
+    }
+  }
+}
+
+.another{
+  text-align: right;
+  padding: .1rem .6rem;
+  line-height: .6rem;
+}
+
+.report{
+  text-align: center;
+  padding: .2rem 0 1rem;
+  background-color: #e5e5e8;
+  img{
+    width: .46rem;
+  }
+}
+
+.footer{
+  background-color: #fff;
+  position: fixed;
+  height: 0.98rem;
+  padding: 0;
+  z-index: 600;
+  .collection{
+    text-align: center;
+    width: 20%;
+    padding-top: .12rem;
+    span{
+      color: darkgray;
+      font-size: .38rem;
+      &.active{
+        color: #ee3943;
+      }
+    }
+    p{
+      font-size: .22rem;
+    }
+  }
+  .order ,.tel{
+    text-align: center;
+    font-size: .28rem;
+    width: 40%;
+    height: .94rem;
+    line-height: .94rem;
+    background-color: #e5e5e8;
+    color: #ee3943;
+  }
+  .tel{
+    background-color: #ee3943;
+    color: #fff;
   }
 }

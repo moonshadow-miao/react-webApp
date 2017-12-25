@@ -130,11 +130,11 @@ let lists = [
 const GoodRooms = (props) => {
   return (
     <div className='goodRoom'>
-      <div className={"title " + props.title? "" :"hide"}>{props.title}</div>
+      <div className={"title " + (props.title? "" :"hide")}>{props.title}</div>
       {
         lists.map((v, i) => (
           <div className="goodRoom_list" key={i}>
-            <Link to="house-detail">
+            <Link to="/house-detail">
               <div className="room clearfix">
               <div className="room_left fl">
                 <div className="img">

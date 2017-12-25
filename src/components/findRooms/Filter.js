@@ -346,9 +346,7 @@ class Filter extends Component {
               </div>
             </div>
           </div>
-
-          <div className="mask" onClick={this.hidePanel}></div>
-
+          <div className="mask" onClick={this.hidePanel}> </div>
         </div>
       </div>
     )
