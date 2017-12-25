@@ -9,6 +9,7 @@ import asyncComponent from '../utils/Bundlle'
 const alert = Modal.alert;
 const Footer =  asyncComponent(() => import('../components/roomDetail/Footer'));
 const RoomList =  asyncComponent(() => import('../components/index/GoodRooms'));
+const Guess =  asyncComponent(() => import('../components/roomDetail/Guess'));
 const GoToTop = window.common.GoToTop;
 const tab_address = [{title: <div><span className='icon-map-marker m-r-5'> </span>地铁</div>}, {
   title: <div><span className='icon-inbox m-r-5'> </span>交通</div>
@@ -64,19 +65,8 @@ class HouseDetail extends Component {
         <div className="slider">
           <Carousel autoplay={false} infinite selectedIndex={0} dots={false} afterChange={num => this.showPicNum(num)}>
             {this.state.data.map(ii => (
-              <a
-                key={ii}
-                href="http://www.alipay.com"
-                style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}
-              >
-                <img
-                  src={`https://zos.alipayobjects.com/rmsportal/${ii}.png`}
-                  alt=""
-                  style={{width: '100%', verticalAlign: 'top'}}
-                  onLoad={() => {
-                    this.setState({imgHeight: 'auto'});
-                  }}
-                />
+              <a key={ii} href="http://www.alipay.com" style={{display: 'inline-block', width: '100%', height: this.state.imgHeight}}>
+                <img src={`https://zos.alipayobjects.com/rmsportal/${ii}.png`} alt="" style={{width: '100%', verticalAlign: 'top'}} onLoad={() => {this.setState({imgHeight: 'auto'});}}/>
               </a>
             ))}
           </Carousel>
@@ -192,12 +182,21 @@ class HouseDetail extends Component {
           </div>
           <div className="comments">
             5条评价
-            <span className='icon-angle-right'></span>
+            <span className='icon-angle-right'> </span>
           </div>
         </div>
         <div className="content">
-          <div className="user">
-
+          <div className="user clearfix">
+            <div className="avatar fl">
+              <img src={RES_URL+'image/avatar.jpg'} alt=""/>
+            </div>
+            <div className="name fl">
+              <p>匿名</p>
+              <p className='time'>2017-12-24 23:51:24发表评论 </p>
+            </div>
+            <div className="comment_text name fl">
+              设施环境:房东人很好，之前电灯坏了，房东很及时的过来处理，网费到期了，只要通知他，就很及时的处理好！
+            </div>
           </div>
         </div>
       </div>
@@ -234,6 +233,7 @@ class HouseDetail extends Component {
 
       {/*猜你喜欢*/}
       <h4>— 猜你喜欢 —</h4>
+      <Guess />
       <div className="another">
         <span>换一批</span>
       </div>

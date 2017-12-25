@@ -149,7 +149,7 @@ const RecommendList = (props) => {
                 {
                   v.list.length && v.list.map((v, i) => (
                     <li key={i} className="room">
-                      <Link to="house-detail">
+                      <Link to="/house-detail">
                         <div className="room_img"><img
                           src='https://cdn.baletoo.cn/Uploads/housephoto/1567/1566294/oss_5a1f7565c8c73.jpg@!380_280.png'
                           alt=""/></div>
