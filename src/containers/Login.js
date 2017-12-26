@@ -78,26 +78,10 @@ class Login extends Component {
     },1000);
   };
 
-  // 邮箱输入框的双向数据绑定
-  changeMail = e => {
+  // 输入框的双向数据绑定
+  changeInput(value,e){
     this.setState({
-      formData: {...this.state.formData, mail: e.target.value},
-      allowLoad: true
-    })
-  };
-
-  // 验证码输入框的双向数据绑定
-  changeCode = e => {
-    this.setState({
-      formData: {...this.state.formData, code: e.target.value},
-      allowLoad: true
-    })
-  };
-
-  // 邮箱的输入框的双向数据绑定
-  changePwd = e => {
-    this.setState({
-      formData: {...this.state.formData, password: e.target.value},
+      formData: {...this.state.formData, [value]: e.target.value},
       allowLoad: true
     })
   };
@@ -143,23 +127,23 @@ class Login extends Component {
           <div className={this.state.formData.type === '1' ? "" : "hide"}>
             <div className="input">
               <em className='icon-envelope'></em>
-              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail} onChange={this.changeMail}/>
+              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail} onChange={this.changeInput.bind(this,'mail')}/>
               <span onClick={this.getCode}>{this.state.codeTip}</span>
             </div>
             <div className="input">
               <em className='icon-key'></em>
-              <input type="text" placeholder='请输入验证码' value={this.state.formData.code} onChange={this.changeCode}/>
+              <input type="text" placeholder='请输入验证码' value={this.state.formData.code} onChange={this.changeInput.bind(this,'code')}/>
             </div>
             <div className="tip"><a href="http://www.benpig.com">查看收件箱( 验证码15分钟内有效 )</a></div>
           </div>
           <div className={this.state.formData.type === '2' ? "" : "hide"}>
             <div className="input">
               <em className='icon-envelope'></em>
-              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail} onChange={this.changeMail}/>
+              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail} onChange={this.changeInput.bind(this,'mail')}/>
             </div>
             <div className="input">
               <em className='icon-key'></em>
-              <input type="text" placeholder='请输入密码' value={this.state.formData.password} onChange={this.changePwd}/>
+              <input type="text" placeholder='请输入密码' value={this.state.formData.password} onChange={this.changeInput(this,'password')}/>
             </div>
             <div className='clearfix register'>
               <Link to='/forget-pwd'><span className='fl'>忘记密码</span></Link>
