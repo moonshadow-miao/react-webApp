@@ -12,7 +12,8 @@ const app = new Koa();
 function MyError(message,status) {
   this.name = 'MyError';
   this.message = message || '请求失败!';
-  this.status = status || 200;
+  this.status = 200;
+  this.code = status
 }
 MyError.prototype = Object.create(Error.prototype);
 MyError.prototype.constructor = MyError;
@@ -28,6 +29,7 @@ const errorHandler = async (ctx, next) => {
     ctx.response.status = err.statusCode || err.status || 200;
     ctx.response.body = {
       msg: err.message,
+      code:err.code
     };
   }
 };

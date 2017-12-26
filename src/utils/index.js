@@ -27,3 +27,8 @@ export function getSession(key) {
 export function setSession(key,value) {
   window.sessionStorage.setItem(key,JSON.stringify(value));
 }
+
+// 验证邮箱合法性
+export function mailValid(mail) {
+  return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(mail);
+}

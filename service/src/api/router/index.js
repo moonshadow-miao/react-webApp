@@ -1,5 +1,5 @@
 import KoaRouter from 'koa-router';
-import returnMsg from '../../utils/returnMsg'
+import {returnMsg} from '../../utils/index'
 
 const index = KoaRouter();
 

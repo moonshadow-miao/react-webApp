@@ -97,7 +97,6 @@
         color: darkgray;
       }
       input {
-        //background: url() 0 no-repeat;
         background: #f2f2f2;
         line-height: .4rem;
         width: 3rem;
@@ -109,8 +108,8 @@
         padding: 0 10px;
         height: .48rem;
         line-height: .48rem;
-        width: 2rem;
-        float: right;
+        right: .8rem;
+        position: absolute;
       }
     }
     .tip, .tip a {
@@ -118,7 +117,6 @@
       font-size: .26rem;
     }
     .login_btn {
-      background-image: linear-gradient(90deg, #ff8084 20%, #ff9696 80%);
       background: #bdbdbe;
       border-radius: 20px;
       color: #fff;
@@ -130,6 +128,9 @@
       outline: none;
       width: 2.67rem;
       height: .7rem;
+      &.active{
+        background:  #ef4c55;
+      }
     }
     .register{
       padding: 0 1%;

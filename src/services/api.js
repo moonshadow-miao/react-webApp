@@ -10,3 +10,13 @@ export async function Api_getIndexImg(id = '1') {
 export async function Api_getCities() {
   return request('/api/info/get-cities');
 }
+
+// 获取邮箱验证码
+export async function Api_verifyCode(mail) {
+  return request('/api/user/get-verify-code',{method:"POST",body:{mail:mail}});
+}
+
+// 登录
+export async function Api_load(obj) {
+  return request('/api/user/load',{method:"POST", body:{...obj}});
+}
