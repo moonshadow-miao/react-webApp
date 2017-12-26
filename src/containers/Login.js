@@ -4,11 +4,14 @@ import {Modal, Toast} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import asyncComponent from "../utils/Bundlle";
 import {Api_verifyCode,Api_load} from '../services/api'
-import {mailValid} from '../utils/index'
+import {mailValid,mixins} from '../utils/index'
+import {a} from '../mixins/loginInput'
 
 const Agreement = asyncComponent(() => import("../components/login/Agreement"));
 const HeaderNav = window.common.HeaderNav;
 let time = null;
+
+@mixins(a)
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -143,7 +146,7 @@ class Login extends Component {
             </div>
             <div className="input">
               <em className='icon-key'></em>
-              <input type="text" placeholder='请输入密码' value={this.state.formData.password} onChange={this.changeInput(this,'password')}/>
+              <input type="text" placeholder='请输入密码' value={this.state.formData.password} onChange={this.changeInput.bind(this,'password')}/>
             </div>
             <div className='clearfix register'>
               <Link to='/forget-pwd'><span className='fl'>忘记密码</span></Link>

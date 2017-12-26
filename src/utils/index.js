@@ -32,3 +32,12 @@ export function setSession(key,value) {
 export function mailValid(mail) {
   return /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/.test(mail);
 }
+
+// 混合
+export function mixins(...list) {
+  return function (target) {
+    target.state={m:88585}
+    Object.assign(target.prototype, ...list);
+  };
+}
+
