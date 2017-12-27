@@ -20,3 +20,5 @@ export async function Api_verifyCode(mail) {
 export async function Api_load(obj) {
   return request('/api/user/load',{method:"POST", body:{...obj}});
 }
+
+//

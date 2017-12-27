@@ -3,31 +3,19 @@ import '../assets/css/login.less'
 import {Modal, Toast} from 'antd-mobile'
 import {Link} from 'react-router-dom'
 import asyncComponent from "../utils/Bundlle";
-import {Api_verifyCode,Api_load} from '../services/api'
-import {mailValid,mixins} from '../utils/index'
-import {a} from '../mixins/loginInput'
+import {Api_load} from '../services/api'
+import {mailValid} from '../utils/index'
+import {Mixin} from '../mixins/loginInput'
 
 const Agreement = asyncComponent(() => import("../components/login/Agreement"));
 const HeaderNav = window.common.HeaderNav;
-let time = null;
 
-@mixins(a)
-class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      formData: {
-        type: '1',
-        mail: '',
-        password: '',
-        code: ''
-      },
-      modal: false,
-      allowLoad: false ,
-      allowSendCode:true,
-      codeTip:'获取验证码'
-    };
-  }
+class Login extends Mixin(Component) {
+  state ={
+    modal: false,
+    ...this.state,
+    formData:{ ...this.state.formData, type: '1'},
+  };
 
   componentDidMount() {
     document.body.className = 'loginContainer'
@@ -35,7 +23,7 @@ class Login extends Component {
 
   componentWillUnmount() {
     document.body.className = '';
-    clearInterval(time)
+    clearInterval(this.state.timer)
   }
 
   // 切换登录方式
@@ -62,40 +50,14 @@ class Login extends Component {
     })
   };
 
-  // 获取验证码
-  getCode = async () => {
-    if(!this.state.allowSendCode) return
-    if(!mailValid(this.state.formData.mail)) return Toast.info('请输入正确的邮箱', 1);
-    await Api_verifyCode(this.state.formData.mail);
-    Toast.success('验证码已发送!', 1);
-    this.setState({allowSendCode:false});
-    let num = 60;
-    time = setInterval(()=>{
-      if(num <= 0 ){
-        this.setState({codeTip:'获取验证码',allowSendCode:true});
-        clearInterval(time);
-        return
-      }
-      this.setState({codeTip:`${num}秒后重新获取`});
-      num--
-    },1000);
-  };
-
-  // 输入框的双向数据绑定
-  changeInput(value,e){
-    this.setState({
-      formData: {...this.state.formData, [value]: e.target.value},
-      allowLoad: true
-    })
-  };
-
-  load =async () => {
-    if(!mailValid(this.state.formData.mail)) return Toast.info('请输入正确的邮箱', 1);
-    if(this.state.formData.type === '1' && !this.state.formData.code) return Toast.info('请输入验证码', 1);
-    if(this.state.formData.type === '2' && !this.state.formData.password) return Toast.info('请输入密码', 1);
+  // 登录/注册/修改密码
+  load = async () => {
+    if (!mailValid(this.state.formData.mail)) return Toast.info('请输入正确的邮箱', 1);
+    if (this.state.formData.type === '1' && !this.state.formData.code) return Toast.info('请输入验证码', 1);
+    if (this.state.formData.type === '2' && !this.state.formData.password) return Toast.info('请输入密码', 1);
     await Api_load(this.state.formData);
 
-    Toast.info('登录成功!页面跳转中...', 1 ,()=>{
+    Toast.info('登录成功!页面跳转中...', 1, () => {
       this.props.history.push('/');
     });
   };
@@ -108,13 +70,13 @@ class Login extends Component {
           <div className="logo">
             <img src='http://localhost:3030/image/login_logo.png' alt=""/>
             <div className="wave">
-              <div></div>
+              <div> </div>
             </div>
             <div className="wave">
-              <div></div>
+              <div> </div>
             </div>
             <div className="wave">
-              <div></div>
+              <div> </div>
             </div>
           </div>
         </div>
@@ -129,28 +91,32 @@ class Login extends Component {
         <div className="form">
           <div className={this.state.formData.type === '1' ? "" : "hide"}>
             <div className="input">
-              <em className='icon-envelope'></em>
-              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail} onChange={this.changeInput.bind(this,'mail')}/>
+              <em className='icon-envelope'> </em>
+              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail}
+                     onChange={this.changeInput.bind(this, 'mail')}/>
               <span onClick={this.getCode}>{this.state.codeTip}</span>
             </div>
             <div className="input">
-              <em className='icon-key'></em>
-              <input type="text" placeholder='请输入验证码' value={this.state.formData.code} onChange={this.changeInput.bind(this,'code')}/>
+              <em className='icon-key'> </em>
+              <input type="text" placeholder='请输入验证码' value={this.state.formData.code}
+                     onChange={this.changeInput.bind(this, 'code')}/>
             </div>
             <div className="tip"><a href="http://www.benpig.com">查看收件箱( 验证码15分钟内有效 )</a></div>
           </div>
           <div className={this.state.formData.type === '2' ? "" : "hide"}>
             <div className="input">
-              <em className='icon-envelope'></em>
-              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail} onChange={this.changeInput.bind(this,'mail')}/>
+              <em className='icon-envelope'> </em>
+              <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail}
+                     onChange={this.changeInput.bind(this, 'mail')}/>
             </div>
             <div className="input">
-              <em className='icon-key'></em>
-              <input type="text" placeholder='请输入密码' value={this.state.formData.password} onChange={this.changeInput.bind(this,'password')}/>
+              <em className='icon-key'> </em>
+              <input type="text" placeholder='请输入密码' value={this.state.formData.password}
+                     onChange={this.changeInput.bind(this, 'password')}/>
             </div>
             <div className='clearfix register'>
               <Link to='/forget-pwd'><span className='fl'>忘记密码</span></Link>
-              <Link to='register'><span className='fr'>手机号注册</span></Link>
+              <Link to='register'><span className='fr'>邮箱注册</span></Link>
             </div>
           </div>
           <div className="load">

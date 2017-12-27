@@ -36,7 +36,6 @@ export function mailValid(mail) {
 // 混合
 export function mixins(...list) {
   return function (target) {
-    target.state={m:88585}
     Object.assign(target.prototype, ...list);
   };
 }
