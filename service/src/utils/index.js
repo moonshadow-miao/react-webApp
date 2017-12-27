@@ -1,3 +1,4 @@
+//
 export const returnMsg = {
   success: {
     msg:'请求成功!',
@@ -36,7 +37,7 @@ export function DateParse(time) {
 
 // 获取6位随机数字
 export function getCode() {
-  return parseInt(Math.random()*100000);
+  return parseInt((Math.random()*1000000).toString().padStart(6, '0'));
 }
 
 // 判断时间是否过期
@@ -44,7 +45,6 @@ export function isExpire(start = new Date().getTime(),end = new Date().getTime()
   time = time *1000 * 60;
   return (start - end) < time
 }
-
 
 // 验证邮箱合法性
 export function mailValid(mail) {

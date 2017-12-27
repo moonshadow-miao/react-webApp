@@ -1,12 +1,14 @@
 import KoaRouter from 'koa-router';
 import User from '../model/user'
-import {getMailHtml, DateParse, getCode ,mailValid} from "../../utils/index";
+import {getMailHtml, DateParse, getCode, mailValid} from "../../utils/index";
 import {code_session} from '../../utils/session'
-import {returnMsg,isExpire} from '../../utils/index'
+import {returnMsg, isExpire} from '../../utils/index'
 import nodemailer from 'nodemailer'
 import md5 from 'md5';
 
 const user = KoaRouter();
+
+// 邮件发出者配置项
 let transporter = nodemailer.createTransport({
   host: '1536550929@qq.com',
   service: 'qq',
@@ -17,17 +19,31 @@ let transporter = nodemailer.createTransport({
   }
 });
 
+// 邮件接收方配置项
 let mailOptions = {
   from: '1536550929@qq.com', //邮件来源
-  to: '1024104763@qq.com', //邮件发送到哪里，多个邮箱使用逗号隔开
+  to: '', //邮件发送到哪里，多个邮箱使用逗号隔开
   subject: '验证码', // 邮件主题
   html: '' // html类型的邮件正文
 };
 
-user.post('/get-verify-code', async (ctx, next) => {
+// 邮箱和验证码判断
+const valid = (param, code_id) => {
+  let code_info = code_session.find(v => (v.id = code_id));
+  if (!mailValid(param.mail.trim())) throw new MyError('邮箱格式不正确!', 209);
+  if (!code_info) throw new MyError('验证码不存在!', 209);
+  if (code_info.code !== param.code.trim() * 1) throw new MyError('验证码不正确!', 209);
+  if (isExpire(code_info.date, null, 15)) throw new MyError('验证码过期!', 209);
+  if (param.password && param.password.length < 6) throw new MyError('密码至少 6 个字符', 209);
+  code_info.isLive = true;
+};
+
+// 发送验证码
+user.get('/get-verify-code', async (ctx, next) => {
+  if (!ctx.request.query.mail || !mailValid(ctx.request.query.mail.trim())) throw new MyError('邮箱格式不正确!', 209);
   let time = DateParse(new Date());
   let code = getCode();
-  let id = md5(getCode())
+  let id = md5(getCode());
   code_session.push({
     id: id,
     code: code,  //激活码，格式自己定义
@@ -35,7 +51,7 @@ user.post('/get-verify-code', async (ctx, next) => {
     isLive: false  //判断是否激活
   });
   mailOptions.html = getMailHtml(code, time);
-  mailOptions.to = ctx.request.body.mail;
+  mailOptions.to = ctx.request.query.mail;
   try {
     let res = await transporter.sendMail(mailOptions);
     console.log('Message sent:', res.messageId, res.response);
@@ -54,60 +70,69 @@ user.post('/get-verify-code', async (ctx, next) => {
   next()
 });
 
+// 注册帐号
 user.post('/register', async (ctx, next) => {
-  let param = ctx.request.body;
-  // 邮箱的验证正则
-  let reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+  let code_id = ctx.cookies.get('code_id'),
+    param = ctx.request.body;
+  if (!param.mail || !param.code || !param.password) throw new MyError('参数不全', 209)
+  valid(param, code_id);
 
-  // 校验参数
-  if (!(param.email && param.pwd && param.verify)) {
-    throw new MyError('参数不全!')
+  let UserSchema = new User({
+    mail: param.mail,                   // 用户邮箱
+    password: param.password,                // 密码
+  });
+  try {
+    await  UserSchema.save();
+  } catch (err) {
+    console.log("Error: " + err.errmsg);
+    if(err.errmsg.indexOf('duplicate') !== -1){
+      throw new MyError('邮箱已存在!',202);
+    }
+    throw new MyError('系统错误',400);
   }
-  if (!reg.test(param.email)) {
-    throw new MyError('请正确输入邮箱!')
-  }
-  if (param.pwd.length < 6) {
-    throw new MyError('密码至少 6 个字符')
-  }
-  if (param.verify === '5') {
-    throw new MyError('验证码不正确!')
-  }
-
   ctx.response.type = 'json';
   ctx.status = 200;
-  ctx.body = {data: 'Hello Worldsss'};
-  let user = new User();
-  user.add({
-    email: param.email,                  // 用户邮箱
-    pwd: param.pwd,                     // 密码
-    register_date: new Date(),               // 注册时间
-    region: param.region                // 注册地址信息
-  }, function (err, res) {
-    if (err) {
-      console.log("Error:" + err);
-      throw new Error();
-    }
-    else {
-      console.log("Res:" + res);
-      next();
-    }
-  });
+  ctx.body = {...returnMsg.success,msg: '注册成功',};
+  next();
 });
 
+// 修改密码
+user.patch('/update-pwd', async (ctx, next) => {
+  let code_id = ctx.cookies.get('code_id'),
+    param = ctx.request.body;
+  if (!param.mail || !param.code || !param.password) throw new MyError('参数不全', 209)
+  valid(param, code_id);
+  let userInfo = await User.findByMail(param.mail);
+
+  if(userInfo[0].password === param.password ) {
+    throw new MyError('新密码和原密码相同!',202);
+  }
+
+  if(userInfo.length){
+    try {
+      await User.update({mail:param.mail},{password:param.password})
+    }catch (err){
+      throw new MyError(err.message,202);
+    }
+  }else {
+    throw new MyError('邮箱不存在',202);
+  }
+  ctx.response.type = 'json';
+  ctx.status = 200;
+  ctx.body = {...returnMsg.success,msg: '密码更改成功'};
+  next();
+});
+
+// 登录
 user.post('/load', async (ctx, next) => {
   let code_id = ctx.cookies.get('code_id'),
     param = ctx.request.body;
-  if(param.type === '1'){  //  判断是验证码登录
-    let code_info = code_session.find(v => (v.id = code_id));
-    if(!mailValid(param.mail.trim())) throw new MyError('邮箱格式不正确!',209);
-    if(!code_info)throw new MyError('验证码不存在!',209);
-    if(code_info.code !== param.code.trim()*1) throw new MyError('验证码不正确!',209);
-    if(isExpire(code_info.date,null,15)) throw new MyError('验证码过期!',209);
-    code_info.isLive = true;
-  }else {   // 判断是密码登录
+  valid(param, code_id);
+  if (param.type === '1') {  //  判断是验证码登录
+
+  } else {   // 判断是密码登录
 
   }
-
   ctx.response.type = 'json';
   ctx.status = 200;
   ctx.body = {...returnMsg.success, msg: '登录成功!'};

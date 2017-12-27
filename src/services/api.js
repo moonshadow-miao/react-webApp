@@ -13,7 +13,7 @@ export async function Api_getCities() {
 
 // 获取邮箱验证码
 export async function Api_verifyCode(mail) {
-  return request('/api/user/get-verify-code',{method:"POST",body:{mail:mail}});
+  return request('/api/user/get-verify-code'+ request_param({mail:mail}));
 }
 
 // 登录
@@ -21,4 +21,12 @@ export async function Api_load(obj) {
   return request('/api/user/load',{method:"POST", body:{...obj}});
 }
 
-//
+// 注册
+export async function Api_register(obj) {
+  return request('/api/user/register',{method:"POST", body:{...obj}});
+}
+
+// 修改密码
+export async function Api_updatePwd(obj) {
+  return request('/api/user/update-pwd',{method:"PATCH", body:{...obj}});
+}

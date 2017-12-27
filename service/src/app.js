@@ -13,7 +13,7 @@ function MyError(message,status) {
   this.name = 'MyError';
   this.message = message || '请求失败!';
   this.status = 200;
-  this.code = status
+  this.code = status || 400
 }
 MyError.prototype = Object.create(Error.prototype);
 MyError.prototype.constructor = MyError;

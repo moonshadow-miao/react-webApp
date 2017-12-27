@@ -20,7 +20,7 @@ export default function request(url, options) {
     credentials: 'include',
   };
   const newOptions = {...defaultOptions, ...options};
-  if (newOptions.method === 'POST' || newOptions.method === 'PUT') {
+  if (newOptions.method !== 'GET') {
     newOptions.headers = {
       "Accept": 'application/json',
       'Content-Type': 'application/json; charset=utf-8',
@@ -35,20 +35,14 @@ export default function request(url, options) {
   .then(async response =>{
     store.dispatch(loaded());
     let res = await response.json();
-    if(res.code ===200){
-      return Promise.resolve(res.data)
+    if(res.code == 200){
+      return Promise.resolve(res.data || {})
     }else {
       throw new Error(res.msg);
     }
   })
   .catch((error) => {
     store.dispatch(loaded());
-    if (error.code) {
-      Toast.fail(error.name + error.message, 1.5)
-    }
-    if ('message' in error) {
-      Toast.fail(error.message, 1.5)
-    }
-    return error;
+    Toast.fail(error.message, 1.5);
   });
 }
