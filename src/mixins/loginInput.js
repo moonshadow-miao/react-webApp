@@ -37,7 +37,7 @@ export function Mixin(Component) {
     };
 
     // 输入框的双向数据绑定
-    changeInput(value, e) {
+    changeInput = (value, e)=> {
       this.setState({
         formData: {...this.state.formData, [value]: e.target.value},
         allowLoad: true,

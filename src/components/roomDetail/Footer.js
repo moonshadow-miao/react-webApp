@@ -1,25 +1,13 @@
 import React, {Component} from 'react';
-import {Toast} from 'antd-mobile';
-import {connect} from 'react-redux'
-import {bindActionCreators} from 'redux'
-import {setDetailSite} from '../../store/actions/indexList'
+// import {Toast} from 'antd-mobile';
+// import {connect} from 'react-redux'
+// import {bindActionCreators} from 'redux'
+// import {setDetailSite} from '../../store/actions/indexList'
 
-@connect(state => ({detailSite: state.reducers.index.detailSite,}), dispatch => bindActionCreators({
-  setDetailSite
-}, dispatch))
+// @connect(state => ({detailSite: state.reducers.index.detailSite,}), dispatch => bindActionCreators({
+//   setDetailSite
+// }, dispatch))
 class Footer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-
-  componentDidMount() {
-
-  }
-
-
   render() {
     return (<footer className="footer clearfix">
       <div className="collection fl">

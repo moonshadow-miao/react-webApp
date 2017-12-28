@@ -45,7 +45,7 @@ class GoToTop extends Component {
     }, 200);
   }
 
-  goTop() {
+  goTop = ()=>{
     document.querySelector(this.props.container).scrollTop = 0
   }
 

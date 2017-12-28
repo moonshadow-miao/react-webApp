@@ -12,13 +12,26 @@ const middleware = [thunk,routerMiddleware(history)]
 
 // Add the reducer to your store on the `router` key
 // Also apply our middleware for navigating
-const store = createStore(
-  combineReducers({
-    reducers,
-    router: routerReducer
-  }),
-  compose(applyMiddleware(...middleware),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()) // ;添加对浏览器调试工具(redux-devtools)的支持
-);
+
+let store = null;
+if(process.env === "development" && window.__REDUX_DEVTOOLS_EXTENSION__){
+  store = createStore(
+    combineReducers({
+      reducers,
+      router: routerReducer
+    }),
+    compose(applyMiddleware(...middleware),window.__REDUX_DEVTOOLS_EXTENSION__()) // ;添加对浏览器调试工具(redux-devtools)的支持
+
+  );
+}else {
+  store = createStore(
+    combineReducers({
+      reducers,
+      router: routerReducer
+    }),
+    compose(applyMiddleware(...middleware))
+  );
+}
 
 export default store
 

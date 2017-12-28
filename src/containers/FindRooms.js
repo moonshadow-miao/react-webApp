@@ -22,13 +22,6 @@ const GoToTop = window.common.GoToTop,
   currentCity: state.reducers.common.currentCity
 }), dispatch => bindActionCreators({setFindSite, storeCity}, dispatch))
 class FindRooms extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-
-    }
-  }
-
   render() {
     return (<div className="container findRooms">
       <GoToTop site={this.props.findSite} setSite={this.props.setFindSite} container='.findRooms'/>

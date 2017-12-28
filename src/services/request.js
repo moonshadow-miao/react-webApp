@@ -12,7 +12,7 @@ function checkStatus(response) {
   throw error;
 }
 
-const BASE_URL = 'http://localhost:3030'
+const BASE_URL = 'http://192.168.123.1:3030'
 
 export default function request(url, options) {
   url = BASE_URL + url;

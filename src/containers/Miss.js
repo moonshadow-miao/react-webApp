@@ -49,7 +49,7 @@ class Miss extends Component {
     }, 1000)
   }
 
-  handle() {
+  handle= ()=> {
     timer2 = setTimeout(() => {
       if (document.querySelectorAll('.container').length <= 1) {
         this.refs.miss.style.display = 'block';

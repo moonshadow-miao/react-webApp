@@ -44,7 +44,7 @@ class Search extends Component {
     ]);
   };
 
-  changeSearch(name,addHistory) {
+  changeSearch = (name,addHistory) =>{
     this.setState({search: name}, () => {
       this.search(addHistory)
     });
@@ -66,7 +66,7 @@ class Search extends Component {
         <div className="title">热门搜索</div>
         <ul>
           {
-            list.map((v, i) => (<li key={i} onClick={this.changeSearch.bind(this, v ,true)}>
+            list.map((v, i) => (<li key={i} onClick={e =>this.changeSearch(v ,true,e)}>
               {v}
             </li>))
           }
@@ -78,7 +78,7 @@ class Search extends Component {
         </div>
         <ul>
           {
-            this.props.searchList.map((v, i) => (<li key={i} onClick={this.changeSearch.bind(this, v ,false)}>
+            this.props.searchList.map((v, i) => (<li key={i} onClick={e =>this.changeSearch(v ,false,e)}>
               {v}
             </li>))
           }

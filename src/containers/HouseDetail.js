@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
-import {Modal, Icon, Carousel, Tabs} from 'antd-mobile';
+import {Icon, Carousel, Tabs} from 'antd-mobile';
 import '../assets/css/detail.less'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {setDetailSite} from '../store/actions/indexList'
 import asyncComponent from '../utils/Bundlle'
 
-const alert = Modal.alert;
 const Footer =  asyncComponent(() => import('../components/roomDetail/Footer'));
 const RoomList =  asyncComponent(() => import('../components/index/GoodRooms'));
 const Guess =  asyncComponent(() => import('../components/roomDetail/Guess'));

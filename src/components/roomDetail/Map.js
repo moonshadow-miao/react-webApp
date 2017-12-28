@@ -24,10 +24,13 @@ const style = {
 }
 
 class Map extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
+  static propTypes = {
+    position: PropTypes.object,
+  };
+
+  static defaultProps = {
+    position: null
+  };
 
   componentDidMount() {
     //加载地图，调用浏览器定位服务
@@ -82,13 +85,5 @@ class Map extends Component {
     </div>)
   }
 }
-
-Map.propTypes = {
-  position: PropTypes.object,
-};
-
-Map.defaultProps = {
-  position: null
-};
 
 export default Map

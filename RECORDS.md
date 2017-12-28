@@ -29,3 +29,8 @@ url: http://www.bootcss.com/p/font-awesome/#whats-new
         "__DEV__": true
       }
     }
+###项目优化
+单独打包核心包,react,redux等
+使用static给组件做prop的类型控制和默认值  
+事件都绑定在实例上,而不是类的原型上 
+尽量少用setState  

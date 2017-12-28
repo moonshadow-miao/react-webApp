@@ -27,7 +27,7 @@ class Login extends Mixin(Component) {
   }
 
   // 切换登录方式
-  changeTab(type) {
+  changeTab = type => {
     this.setState({
       formData: Object.assign(this.state.formData, {type: type}),
       allowLoad: false
@@ -35,7 +35,7 @@ class Login extends Mixin(Component) {
   }
 
   // 显示弹出框(协议)
-  showPop = (e) => {
+  showPop = e => {
     e.preventDefault()
     this.setState({
       modal: true
@@ -43,7 +43,7 @@ class Login extends Mixin(Component) {
   }
 
   // 隐藏弹出框(协议)
-  hidePop = (e) => {
+  hidePop = e => {
     e.preventDefault()
     this.setState({
       modal: false
@@ -68,7 +68,7 @@ class Login extends Mixin(Component) {
         <div className="top">
           <HeaderNav/>
           <div className="logo">
-            <img src='http://localhost:3030/image/login_logo.png' alt=""/>
+            <img src={RES_URL+'image/login_logo.png'} alt=""/>
             <div className="wave">
               <div> </div>
             </div>
@@ -82,10 +82,10 @@ class Login extends Mixin(Component) {
         </div>
         <ul className="tab">
           <li className={this.state.formData.type === '1' ? "active tab_sub" : "tab_sub"}
-              onClick={this.changeTab.bind(this, '1')}>快速登录
+              onClick={e =>this.changeTab('1',e)}>快速登录
           </li>
           <li className={this.state.formData.type === '2' ? "active tab_sub" : "tab_sub"}
-              onClick={this.changeTab.bind(this, '2')}>账号登录
+              onClick={e =>this.changeTab('2',e)}>账号登录
           </li>
         </ul>
         <div className="form">
@@ -93,13 +93,13 @@ class Login extends Mixin(Component) {
             <div className="input">
               <em className='icon-envelope'> </em>
               <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail}
-                     onChange={this.changeInput.bind(this, 'mail')}/>
+                     onChange={e =>this.changeInput('mail',e)}/>
               <span onClick={this.getCode}>{this.state.codeTip}</span>
             </div>
             <div className="input">
               <em className='icon-key'> </em>
               <input type="text" placeholder='请输入验证码' value={this.state.formData.code}
-                     onChange={this.changeInput.bind(this, 'code')}/>
+                     onChange={e =>this.changeInput('code',e)}/>
             </div>
             <div className="tip"><a href="http://www.benpig.com">查看收件箱( 验证码15分钟内有效 )</a></div>
           </div>
@@ -107,12 +107,12 @@ class Login extends Mixin(Component) {
             <div className="input">
               <em className='icon-envelope'> </em>
               <input type="text" placeholder='请输入邮箱' value={this.state.formData.mail}
-                     onChange={this.changeInput.bind(this, 'mail')}/>
+                     onChange={e =>this.changeInput('mail',e)}/>
             </div>
             <div className="input">
               <em className='icon-key'> </em>
               <input type="text" placeholder='请输入密码' value={this.state.formData.password}
-                     onChange={this.changeInput.bind(this, 'password')}/>
+                     onChange={e =>this.changeInput('password',e)}/>
             </div>
             <div className='clearfix register'>
               <Link to='/forget-pwd'><span className='fl'>忘记密码</span></Link>

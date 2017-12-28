@@ -57,7 +57,10 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: {
+    main:[require.resolve('./polyfills'), paths.appIndexJs],
+    vendor:['react','redux','react-redux','react-router-dom','react-dom','react-router-redux','react-addons-css-transition-group','redux-thunk']
+  },
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -249,6 +252,8 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
+
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
@@ -276,7 +281,7 @@ module.exports = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
-    new webpack.DefinePlugin(Object.assign(env.stringified,{RES_URL :JSON.stringify("http://localhost:3030/")})),
+    new webpack.DefinePlugin(Object.assign(env.stringified,{RES_URL :JSON.stringify("http://192.168.123.1:3030/")})),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -294,7 +299,7 @@ module.exports = {
         comments: false,
         // Turned on because emoji and regex is not minified properly using default
         // https://github.com/facebookincubator/create-react-app/issues/2488
-        ascii_only: true,
+        ascii_only: false,
       },
       sourceMap: shouldUseSourceMap,
     }),
