@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import '../assets/css/login.less'
 import {Modal, Toast} from 'antd-mobile'
+import 'antd-mobile/lib/modal/style';
+import 'antd-mobile/lib/toast/style';
 import {Link} from 'react-router-dom'
 import {is} from 'immutable'
 import asyncComponent from "../utils/Bundlle";

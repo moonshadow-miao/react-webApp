@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Icon} from 'antd-mobile';
+import 'antd-mobile/lib/icon/style';
 import '../assets/css/findRoom.less'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'

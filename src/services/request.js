@@ -1,4 +1,5 @@
-import {Toast,ActivityIndicator} from 'antd-mobile';
+import {Toast} from 'antd-mobile';
+import 'antd-mobile/lib/toast/style';
 import {loading,loaded} from '../store/actions/common'
 import store from '../store/index'
 

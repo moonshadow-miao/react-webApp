@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Icon, Carousel, Tabs} from 'antd-mobile';
+import 'antd-mobile/lib/icon/style';
+import 'antd-mobile/lib/carousel/style';
 import '../assets/css/detail.less'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -35,13 +37,6 @@ class HouseDetail extends Component {
   }
 
   componentDidMount() {
-    if (!document.querySelector('#mapJs')) {
-      let script = document.createElement('script');
-      script.src = 'http://webapi.amap.com/maps?v=1.4.2&key=b728010ec00546dd077a0a6c14516a66';
-      script.id = 'mapJs';
-      script.async = 'async';
-      document.body.appendChild(script);
-    }
     this.state.Map = asyncComponent(() => import('../components/roomDetail/Map'));
   }
 

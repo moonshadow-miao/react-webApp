@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Icon} from 'antd-mobile'
+import 'antd-mobile/lib/icon/style';
 import {Link} from 'react-router-dom'
 
 HeaderSearch.prototypes = {

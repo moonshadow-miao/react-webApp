@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {Icon} from 'antd-mobile';
+import 'antd-mobile/lib/icon/style';
 import {is} from 'immutable'
 import '../assets/css/index.less'
 import asyncComponent from "../utils/Bundlle";

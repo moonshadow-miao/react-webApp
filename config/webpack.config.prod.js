@@ -97,7 +97,7 @@ const webpackConfig = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx','.less'],
     alias: {
       
       // Support React Native Web
@@ -155,7 +155,7 @@ const webpackConfig = {
           {
             test: /(containers|components)\/([^/]+)\/?([^/]*)\.js?$/,
             include: path.resolve(__dirname, 'src/routers/'),
-            loaders: ['bundle-loader?lazy', 'babel-loader']
+            loaders: ['bundle-loader?lazy', 'babel-loader'],
           },
           // Process JS with Babel.
           {
@@ -235,7 +235,7 @@ const webpackConfig = {
             use: [
               'style-loader',
               'css-loader',
-              {loader: 'less-loader', options: {modifyVars: theme, name: 'static/css/[name].[hash:8].css',}},
+              {loader: 'less-loader', options: {modifyVars: theme, name: 'static/css/[name].[hash:8].css'}},
             ],
             include: [/node_modules/,/assets/],
           },
@@ -286,7 +286,7 @@ const webpackConfig = {
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.
     // Otherwise React will be compiled in the very slow development mode.
-    new webpack.DefinePlugin(Object.assign(env.stringified,{RES_URL :JSON.stringify("http://192.168.123.1:3030/")})),
+    new webpack.DefinePlugin(Object.assign(env.stringified,{RES_URL :JSON.stringify("http://localhost:3030/")})),
     // Minify the code.
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -365,5 +365,11 @@ const webpackConfig = {
     child_process: 'empty',
   },
 };
+
+console.log('report:',process.argv[3] === 'report')
+if (process.argv[3] === 'report') {
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+  webpackConfig.plugins.push(new BundleAnalyzerPlugin())
+}
 
 module.exports =  webpackConfig

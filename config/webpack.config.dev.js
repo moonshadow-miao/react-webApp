@@ -88,7 +88,7 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx','less'],
+    extensions: ['.js', '.json','.jsx','.less'],
     alias: {
       
       // Support React Native Web
@@ -222,7 +222,7 @@ module.exports = {
             use: [
               'style-loader',
               'css-loader',
-              {loader: 'less-loader', options: {modifyVars: theme}},
+              {loader: 'less-loader', options: {modifyVars: theme,name: 'static/css/[name].[hash:8].css'}},
             ],
             include: [/node_modules/,/assets/],
           },

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Icon} from 'antd-mobile';
+import 'antd-mobile/lib/icon/style';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 let list = [

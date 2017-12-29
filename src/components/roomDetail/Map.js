@@ -1,7 +1,7 @@
 import React, {PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {Toast} from 'antd-mobile';
-
+import 'antd-mobile/lib/toast/style';
 let map = null, geolocation = null, marker = null;
 
 const style = {

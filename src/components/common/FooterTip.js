@@ -1,6 +1,6 @@
 import React from 'react';
 import {Icon} from 'antd-mobile';
-
+import 'antd-mobile/lib/icon/style';
 const FooterTip = () => {
   let footer = null,
     close = () => {

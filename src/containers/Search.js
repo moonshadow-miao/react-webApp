@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Icon} from 'antd-mobile';
+import 'antd-mobile/lib/modal/style';
+import 'antd-mobile/lib/icon/style';
 import '../assets/css/search.less'
 import {is} from 'immutable'
 import {connect} from 'react-redux'

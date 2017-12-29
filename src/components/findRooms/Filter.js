@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Range} from 'antd-mobile'
+import 'antd-mobile/lib/range/style';
 import {is} from 'immutable'
 import {updateFilterOptions} from '../../store/actions/common'
 import '../../assets/css/filter.less'

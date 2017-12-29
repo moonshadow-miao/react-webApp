@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Toast} from 'antd-mobile'
+import 'antd-mobile/lib/toast/style';
 import PropTypes from 'prop-types';
 import {is} from 'immutable'
 import '../../assets/css/register.less'
