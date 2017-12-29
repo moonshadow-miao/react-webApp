@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import {Toast} from 'antd-mobile';
 
@@ -23,7 +23,7 @@ const style = {
   }
 }
 
-class Map extends Component {
+class Map extends PureComponent  {
   static propTypes = {
     position: PropTypes.object,
   };

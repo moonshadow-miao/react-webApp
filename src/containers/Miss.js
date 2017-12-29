@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent } from 'react';
 import {Link} from 'react-router-dom'
 
 const HeaderNav = window.common.HeaderNav;
@@ -28,7 +28,7 @@ const style = {
 let timer = null,
   timer2 = null;
 
-class Miss extends Component {
+class Miss extends PureComponent  {
   constructor(prop) {
     super(prop);
     this.state = {

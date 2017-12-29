@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../assets/css/login.less'
 import {Modal, Toast} from 'antd-mobile'
 import {Link} from 'react-router-dom'
+import {is} from 'immutable'
 import asyncComponent from "../utils/Bundlle";
 import {Api_load} from '../services/api'
 import {mailValid} from '../utils/index'
@@ -16,6 +17,11 @@ class Login extends Mixin(Component) {
     ...this.state,
     formData:{ ...this.state.formData, type: '1'},
   };
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+      !(this.state === nextState || is(this.state, nextState));
+  }
 
   componentDidMount() {
     document.body.className = 'loginContainer'

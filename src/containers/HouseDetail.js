@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {setDetailSite} from '../store/actions/indexList'
 import asyncComponent from '../utils/Bundlle'
-
+import {is}  from 'immutable';
 const Footer =  asyncComponent(() => import('../components/roomDetail/Footer'));
 const RoomList =  asyncComponent(() => import('../components/index/GoodRooms'));
 const Guess =  asyncComponent(() => import('../components/roomDetail/Guess'));
@@ -23,10 +23,15 @@ class HouseDetail extends Component {
     super(props)
     this.state = {
       imgHeight: '',
-      data: ['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI'],
+      data:(['AiyWuByWklrrUDlFignR', 'TekJlZRVCjLFexlOCuWn', 'IJOtIlfsYdTyaDTRVrLI']),
       currentNum: 1,
       Map: null,
     }
+  }
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+    !(this.state === nextState || is(this.state, nextState));
   }
 
   componentDidMount() {

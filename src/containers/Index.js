@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from 'redux'
 import {Icon} from 'antd-mobile';
+import {is} from 'immutable'
 import '../assets/css/index.less'
 import asyncComponent from "../utils/Bundlle";
 import {connect} from 'react-redux'
@@ -26,9 +27,14 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      city: this.props.currentCity.city_name,
+      city_name: this.props.currentCity.city_name,
       cityControl: "cities hide",
     };
+  }
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+      !(this.state === nextState || is(this.state, nextState));
   }
 
   showCities = event => {
@@ -49,7 +55,7 @@ class Index extends Component {
   changeCity = city => {
     this.props.actions.storeCity(city);
     this.setState({
-      city: city.name
+      city_name: city.name
     })
   }
 
@@ -62,7 +68,7 @@ class Index extends Component {
         <div className="banner">
           <img src={RES_URL + this.props.banner} alt="暂无图片"/>
           <div className="city_select">
-            <span onClick={this.showCities}>{this.state.city}</span>
+            <span onClick={this.showCities}>{this.state.city_name}</span>
             <div className={this.state.cityControl}>
               {
                 this.props.cities.map((v, i) => (

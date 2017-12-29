@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {is} from 'immutable'
 // import {Toast} from 'antd-mobile';
 // import {connect} from 'react-redux'
 // import {bindActionCreators} from 'redux'
@@ -8,6 +9,12 @@ import React, {Component} from 'react';
 //   setDetailSite
 // }, dispatch))
 class Footer extends Component {
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+      !(this.state === nextState || is(this.state, nextState));
+  }
+
   render() {
     return (<footer className="footer clearfix">
       <div className="collection fl">

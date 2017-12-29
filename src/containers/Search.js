@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Modal, Icon} from 'antd-mobile';
 import '../assets/css/search.less'
+import {is} from 'immutable'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {storeSearchList, clearSearchList} from '../store/actions/common'
@@ -13,12 +14,15 @@ let list = ["上大路", "金桥", "魔方公寓", "七宝", "五角场", "徐�
   clearSearchList
 }, dispatch))
 class Search extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      search: '',
-      btnControl: true
-    }
+
+  state = {
+    search: '',
+    btnControl: true
+  };
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+      !(this.state === nextState || is(this.state, nextState));
   }
 
   changeInput = (e) => {

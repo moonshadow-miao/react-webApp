@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent } from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 
@@ -16,7 +16,13 @@ function throttle() {
 let pathname = null;
 
 @connect(state=>({pathname:state.router.location.pathname}))
-class GoToTop extends Component {
+class GoToTop extends PureComponent  {
+  static propTypes = {
+    setSite: PropTypes.func,
+    site: PropTypes.number,
+    container: PropTypes.string.isRequired
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -58,9 +64,4 @@ class GoToTop extends Component {
   }
 }
 
-GoToTop.propTypes = {
-  setSite: PropTypes.func,
-  site: PropTypes.number,
-  container: PropTypes.string.isRequired
-}
 export default GoToTop

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Toast} from 'antd-mobile'
 import PropTypes from 'prop-types';
+import {is} from 'immutable'
 import '../../assets/css/register.less'
 import {Mixin} from '../../mixins/loginInput'
 import {mailValid} from "../../utils";
@@ -13,6 +14,11 @@ class RegisterInput extends Mixin(Component) {
 
   static defaultProps = {
     type:'1'
+  }
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+      !(this.state === nextState || is(this.state, nextState));
   }
 
   submit = ()=>{

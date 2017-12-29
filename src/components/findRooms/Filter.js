@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {Range} from 'antd-mobile'
+import {is} from 'immutable'
 import {updateFilterOptions} from '../../store/actions/common'
 import '../../assets/css/filter.less'
 import {search} from "../../mock/findRooms";
@@ -35,26 +36,29 @@ const initTabs = ['位置', '租金', '户型', '更多'];
 class Filter extends Component {
   static propTypes = {}
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      showTabs: -1,       // 控制显示选择器指定的面板,
-      isFixed: false,     // 控制选择器导航栏的是否固定定位
-      isShowPanel: false, // 控制选择器的面板部分整体的显示和隐藏
-      position: '0',       // 控制区域选择(区域/地铁)
-      sub_region: [],      // 区域列表右侧
-      region_index: -1,    // 控制区域选择左侧
-      sub_region_index: -1, // 控制区域选择右侧
-      rent_index: -1,       // 控制价格卡片选择
-      custom_price_top: 0,  // 控制自定义价格上限
-      custom_price_bottom: 5000,  // 控制自定义价格下限
-      sub_layout: [],       // 户型选择右侧列表
-      layout_index: -1,    // 控制户型选择左侧
-      sub_layout_index: -1,    // 控制户型选择右侧
-      moreType: '0',       // 控制更多选择(排序/特色)
-      sort_index: -1,     // 控制排序的选择
-      special: []    // 控制特色的选择
-    };
+
+  state = {
+    showTabs: -1,       // 控制显示选择器指定的面板,
+    isFixed: false,     // 控制选择器导航栏的是否固定定位
+    isShowPanel: false, // 控制选择器的面板部分整体的显示和隐藏
+    position: '0',       // 控制区域选择(区域/地铁)
+    sub_region: [],      // 区域列表右侧
+    region_index: -1,    // 控制区域选择左侧
+    sub_region_index: -1, // 控制区域选择右侧
+    rent_index: -1,       // 控制价格卡片选择
+    custom_price_top: 0,  // 控制自定义价格上限
+    custom_price_bottom: 5000,  // 控制自定义价格下限
+    sub_layout: [],       // 户型选择右侧列表
+    layout_index: -1,    // 控制户型选择左侧
+    sub_layout_index: -1,    // 控制户型选择右侧
+    moreType: '0',       // 控制更多选择(排序/特色)
+    sort_index: -1,     // 控制排序的选择
+    special: []    // 控制特色的选择
+  };
+
+  shouldComponentUpdate (nextProps, nextState){
+    return !(this.props === nextProps || is(this.props, nextProps)) ||
+      !(this.state === nextState || is(this.state, nextState));
   }
 
   componentWillUnmount() {

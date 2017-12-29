@@ -34,3 +34,5 @@ url: http://www.bootcss.com/p/font-awesome/#whats-new
 使用static给组件做prop的类型控制和默认值  
 事件都绑定在实例上,而不是类的原型上 
 尽量少用setState  
+使用PureComponent 创建组件
+使用seamless-immutable

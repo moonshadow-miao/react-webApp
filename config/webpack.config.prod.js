@@ -14,6 +14,7 @@ const paths = require('./paths');
 const getClientEnvironment = require('./env');
 var theme = require('../theme')
 
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -50,7 +51,11 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
-module.exports = {
+const webpackConfig = {
+  // externals:{
+  //   react:'React',
+  //   jquery:'jQuery'
+  // },
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -59,7 +64,7 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: {
     main:[require.resolve('./polyfills'), paths.appIndexJs],
-    vendor:['react','redux','react-redux','react-router-dom','react-dom','react-router-redux','react-addons-css-transition-group','redux-thunk']
+    vendor: ['react', 'react-dom', 'react-redux', 'immutable','react-router-dom','react-router-redux','redux','redux-thunk']
   },
   output: {
     // The build folder.
@@ -252,7 +257,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.optimize.CommonsChunkPlugin({ name: 'vendor', filename: 'vendor.bundle.js' }),
+    new webpack.optimize.CommonsChunkPlugin({ name: 'static/js/vendor', filename: 'static/js/vendor.bundle.js' ,minChunks:2}),
 
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
@@ -360,3 +365,5 @@ module.exports = {
     child_process: 'empty',
   },
 };
+
+module.exports =  webpackConfig
