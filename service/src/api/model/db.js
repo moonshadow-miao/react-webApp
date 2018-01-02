@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-
+mongoose.Promise = global.Promise;
 let DB_URL = 'mongodb://localhost:27017/react_baletu';
 
 mongoose.connect(DB_URL);

@@ -5,6 +5,8 @@ import {code_session} from '../../utils/session'
 import {returnMsg, isExpire} from '../../utils/index'
 import nodemailer from 'nodemailer'
 import md5 from 'md5';
+import bcrypt  from 'bcrypt'
+import {secret} from "../../congfig";
 
 const user = KoaRouter();
 
@@ -31,6 +33,7 @@ let mailOptions = {
 const valid = (param, code_id) => {
   let code_info = code_session.find(v => (v.id = code_id));
   if (!mailValid(param.mail.trim())) throw new MyError('邮箱格式不正确!', 209);
+  if (param.mail.trim() !== code_info.mail) throw new MyError('请重新获取验证码!', 209);
   if (!code_info) throw new MyError('验证码不存在!', 209);
   if (code_info.code !== param.code.trim() * 1) throw new MyError('验证码不正确!', 209);
   if (isExpire(code_info.date, null, 15)) throw new MyError('验证码过期!', 209);
@@ -48,7 +51,7 @@ user.get('/get-verify-code', async (ctx, next) => {
     id: id,
     code: code,  //激活码，格式自己定义
     date: new Date().getTime() + 15 * 60 * 1000, //过期日期，过期后不能激活
-    isLive: false  //判断是否激活
+    mail: ctx.request.query.mail.trim()
   });
   mailOptions.html = getMailHtml(code, time);
   mailOptions.to = ctx.request.query.mail;
@@ -74,6 +77,8 @@ user.get('/get-verify-code', async (ctx, next) => {
 user.post('/register', async (ctx, next) => {
   let code_id = ctx.cookies.get('code_id'),
     param = ctx.request.body;
+  param.password = await bcrypt.hash(param.password, 6);
+  console.log('param.password',param.password);
   if (!param.mail || !param.code || !param.password) throw new MyError('参数不全', 209)
   valid(param, code_id);
 
@@ -130,9 +135,19 @@ user.post('/load', async (ctx, next) => {
   valid(param, code_id);
   if (param.type === '1') {  //  判断是验证码登录
 
-  } else {   // 判断是密码登录
-
+    return
+  }   // 判断是密码登录
+  let userInfo = await User.findByMail(param.mail);
+  if (userInfo.length) {
+    let pwdRes = await  bcrypt.compare(param.password, userInfo.password);
+    if(pwdRes){
+      let token = jwt.sign(userInfo._id.toLocaleString(),secret,{expiresIn:60*60*2})
+    }else {
+      throw  MyError('密码不正确!',202)
+    }
   }
+
+
   ctx.response.type = 'json';
   ctx.status = 200;
   ctx.body = {...returnMsg.success, msg: '登录成功!'};

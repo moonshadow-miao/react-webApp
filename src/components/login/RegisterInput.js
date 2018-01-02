@@ -10,7 +10,7 @@ import {Api_register,Api_updatePwd} from '../../services/api'
 class RegisterInput extends Mixin(Component) {
   static propTypes = {
     type:PropTypes.string,
-    submit:PropTypes.func.isRequired
+    push:PropTypes.func.isRequired
   }
 
   static defaultProps = {
@@ -31,7 +31,7 @@ class RegisterInput extends Mixin(Component) {
       Api_register(this.state.formData).then(res=>{
        if(res) {
          Toast.info('注册成功', 1);
-         this.props.history.push('/login')
+         this.props.push('/login')
        }
       });
       return
@@ -40,7 +40,7 @@ class RegisterInput extends Mixin(Component) {
     Api_updatePwd(this.state.formData).then(res=>{
       if(res) {
         Toast.info('修改成功', 1);
-        this.props.history.push('/login')
+        this.props.push('/login')
       }
     })
 
