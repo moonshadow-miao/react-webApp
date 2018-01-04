@@ -135,7 +135,7 @@ const RecommendList = (props) => {
     <div>
       {
         lists.map((v, i) => (
-          <div className="recommend_list" key={i}>
+          <div className="recommend_list" key={v.tag}>
             <div className="title">
               <h3 className='fl'>{tag[v.tag]}</h3>
               <div className='fr'>

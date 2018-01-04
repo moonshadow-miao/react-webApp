@@ -36,4 +36,6 @@ url: http://www.bootcss.com/p/font-awesome/#whats-new
 尽量少用setState  
 使用PureComponent 创建组件
 使用seamless-immutable
-##jwt配合token完成登
+##jwt配合token完成登录
+##setState的深入理解
+##keys的使用,避免使用循环的index

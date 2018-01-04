@@ -72,7 +72,7 @@ class Search extends Component {
         <div className="title">热门搜索</div>
         <ul>
           {
-            list.map((v, i) => (<li key={i} onClick={e =>this.changeSearch(v ,true,e)}>
+            list.map((v) => (<li key={v} onClick={e =>this.changeSearch(v ,true,e)}>
               {v}
             </li>))
           }
@@ -84,7 +84,7 @@ class Search extends Component {
         </div>
         <ul>
           {
-            this.props.searchList.map((v, i) => (<li key={i} onClick={e =>this.changeSearch(v ,false,e)}>
+            this.props.searchList.map((v) => (<li key={v} onClick={e =>this.changeSearch(v ,false,e)}>
               {v}
             </li>))
           }

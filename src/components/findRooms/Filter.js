@@ -37,7 +37,6 @@ const initTabs = ['位置', '租金', '户型', '更多'];
 class Filter extends Component {
   static propTypes = {}
 
-
   state = {
     showTabs: -1,       // 控制显示选择器指定的面板,
     isFixed: false,     // 控制选择器导航栏的是否固定定位
@@ -70,7 +69,7 @@ class Filter extends Component {
     document.querySelector('.findRooms').addEventListener("scroll", throttle.bind(this), false);
   }
 
-  showPanel(index) {
+  showPanel = (index) => {
     this.setState({
       showTabs: index,
       isFixed: true,
@@ -80,7 +79,7 @@ class Filter extends Component {
 
   hidePanel = () => {
     this.setState({
-      isFixed: true,
+      isFixed: document.querySelector('.findRooms').scrollTop > 0.8 * rem,
       isShowPanel: false,
       showTabs: -1,
     })
@@ -161,7 +160,7 @@ class Filter extends Component {
         <div className={"tab-wrapper" + (this.state.isFixed ? ' fixed' : '')}>
           {
             this.props.filterOptions.map((v, i) => (
-              <div className='tab' key={i}
+              <div className='tab' key={v.index}
                    onClick={e=>this.showPanel(i+1,e)}>
                 <span
                   className={"tab-text " + (this.state.showTabs === (i + 1) || this.props.filterOptions[i].value !== initTabs[i] ? 'active' : '')}>{v.value}</span>
@@ -189,7 +188,7 @@ class Filter extends Component {
                     </li>
                     {
                       search.data.region.map((v, i) => (
-                        <li key={'region' + i}
+                        <li key={v.name}
                             className={'sub_region ' + (this.state.region_index === i ? 'active' : '')}
                             onClick={e=>this.changeRegionList(v.rightList, v.name, i,e)}>
                           {v.name}
@@ -204,7 +203,7 @@ class Filter extends Component {
                     }
                     {
                       this.state.sub_region.map((v, i) => (
-                        <li key={'sub_region' + i} onClick={e => this.selectRegion(v, i,e)}
+                        <li key={v.id} onClick={e => this.selectRegion(v, i,e)}
                             className={'sub_region ' + (this.state.sub_region_index === i ? 'active' : '')}>{v.name}</li>))
                     }
                   </ul>
@@ -218,7 +217,7 @@ class Filter extends Component {
                     </li>
                     {
                       search.data.metro.map((v, i) => (
-                        <li key={'region' + i}
+                        <li key={v.id}
                             className={'sub_region ' + (this.state.region_index === i ? 'active' : '')}
                             onClick={e =>this.changeRegionList(v.rightList, v.name, i,e)}>
                           {v.name}
@@ -233,7 +232,7 @@ class Filter extends Component {
                     }
                     {
                       this.state.sub_region.map((v, i) => (
-                        <li key={'sub_region' + i} onClick={e=>this.selectRegion( v, i,e)}
+                        <li key={v.id} onClick={e=>this.selectRegion( v, i,e)}
                             className={'sub_region ' + (this.state.sub_region_index === i ? 'active' : '')}>{v.name}</li>))
                     }
                   </ul>
@@ -251,7 +250,7 @@ class Filter extends Component {
               {
                 search.data.rent.map((v, i) => (
                   <div className={"option " + (this.state.rent_index === i ? 'active' : '')}
-                       onClick={e =>this.selectRent(v, i,e)} key={'rent' + i}>
+                       onClick={e =>this.selectRent(v, i,e)} key={v.id}>
                     {v.name}
                   </div>))
               }
@@ -286,7 +285,7 @@ class Filter extends Component {
                     </li>
                     {
                       search.data.layout.map((v, i) => (
-                        <li key={'layout' + i}
+                        <li key={v.id}
                             className={'sub_region ' + (this.state.layout_index === i ? 'active' : '')}
                             onClick={e =>this.changeLayoutList(v.right, v.name, i,e)}>
                           {v.name}
@@ -301,7 +300,7 @@ class Filter extends Component {
                     }
                     {
                       this.state.sub_layout.map((v, i) => (
-                        <li key={'sub_layout' + i} onClick={e =>this.selectLayout(v, i ,e)}
+                        <li key={v.id} onClick={e =>this.selectLayout(v, i ,e)}
                             className={'sub_region ' + (this.state.sub_layout_index === i ? 'active' : '')}>{v.name}</li>))
                     }
                   </ul>
@@ -330,14 +329,14 @@ class Filter extends Component {
                       </li>
                       {
                         search.data.sort.map((v, i) => (
-                          <li key={'sort' + i} onClick={e =>this.selectSort(v.name, i,v.id,e)}
+                          <li key={v.id} onClick={e =>this.selectSort(v.name, i,v.id,e)}
                               className={'sub_region ' + (this.state.sort_index === i ? 'active' : '')}>{v.name}</li>))
                       }
                     </div>
                     <div className={this.state.moreType === '1' ? '' : 'hide'}>
                       {
                         search.data.special.map((v, i) => (
-                          <li key={'special' + i} onClick={e =>this.selectSpecial(v.id,e)}
+                          <li key={v.id} onClick={e =>this.selectSpecial(v.id,e)}
                               className={'sub_region ' + (this.state.special.indexOf(v.id) !== -1 ? 'active' : '')}>
                             {v.name} <span
                             className={'fr circle ' + (this.state.special.indexOf(v.id) !== -1 ? 'active' : '')}> </span>

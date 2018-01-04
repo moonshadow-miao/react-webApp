@@ -23,6 +23,33 @@ const GoToTop = window.common.GoToTop,
   currentCity: state.reducers.common.currentCity
 }), dispatch => bindActionCreators({setFindSite, storeCity}, dispatch))
 class FindRooms extends Component {
+  // state = { count : 0 }
+  // // 0 1 1 1 2 2 2
+  // componentDidMount() {
+  //   this.setState({ count: this.state.count + 1 }, () => {
+  //     console.log(`apple.2 .. ${this.state.count}`)  // 1
+  //   })
+  //
+  //   console.log(`orange.1 .. ${this.state.count}`)  // 0
+  //
+  //   setTimeout(() => {
+  //     console.log(`lemen.3 .. ${this.state.count}`)  // 1
+  //
+  //     this.setState({ count: this.state.count + 1 }, () => {
+  //       console.log(`banana.4 .. ${this.state.count}`)  // 2
+  //     })
+  //
+  //     this.setState({ count: this.state.count + 1 }, () => {
+  //       console.log(`strawberry.5 .. ${this.state.count}`)  // 3
+  //     })
+  //
+  //     setTimeout(() => {
+  //       console.log(`grape.7..${this.state.count}`)  // 3
+  //     }, 0)
+  //
+  //     console.log(`pear .6.. ${this.state.count}`)  // 3
+  //   }, 0)
+  // }
   render() {
     return (<div className="container findRooms">
       <GoToTop site={this.props.findSite} setSite={this.props.setFindSite} container='.findRooms'/>

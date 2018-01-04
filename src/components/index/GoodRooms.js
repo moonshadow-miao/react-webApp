@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import '../../assets/css/goodRoom.less'
 
 let lists = [
-  {},{},{},
+  { "house_id": "867383",},{ "house_id": "767333",},{ "house_id": "867833",},
   {
     "house_id": "867333",
     "lan_co_id": 4821,
@@ -134,7 +134,7 @@ const GoodRooms = (props) => {
       <div className={"title " + (props.title? "" :"hide")}>{props.title}</div>
       {
         lists.map((v, i) => (
-          <div className="goodRoom_list" key={i}>
+          <div className="goodRoom_list" key={v.house_id}>
             <Link to="/house-detail">
               <div className="room clearfix">
               <div className="room_left fl">
