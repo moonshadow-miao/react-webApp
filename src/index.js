@@ -10,7 +10,7 @@ import HeaderNav from './components/common/HeaderNav'
 import GoToTop from './components/common/GoToTop'
 import FooterTip from './components/common/FooterTip'
 window.common = {HeaderNav,GoToTop,FooterTip}; // todo
-import './store/actions/indexList'
+
 if ('addEventListener' in document) {
   document.addEventListener('DOMContentLoaded', function() {
     window.FastClick.attach(document.body);

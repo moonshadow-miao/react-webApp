@@ -144,7 +144,7 @@ class HouseDetail extends Component {
         <div className="facilities">
           <ul className="facilities clearfix" >
             <li><img src={RES_URL + "image/114.png"} alt=""/></li>
-            <li><img src={RES_URL + "image/116.png" }alt="" /></li>
+            <li><img src={RES_URL + "image/116.png"} alt="" /></li>
             <li><img src={RES_URL + "image/117.png"} alt="" /></li>
             <li><img src={RES_URL + "image/135.png"} alt="" /></li>
             <li><img src={RES_URL + "image/136.png"} alt="" /></li>
